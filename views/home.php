@@ -1,1 +1,1 @@
-<h1>Main</h1>
+<div>HOME PAGE</div>

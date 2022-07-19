@@ -6,7 +6,7 @@ class Router
     public Request $request;
     protected $routes = [];
 
-    public function __construct($request)
+    public function __construct(Request $request)
     {
         $this->request = $request;
     }
@@ -23,6 +23,7 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
        
         if ($callback === false) {
+            Application::$app->response->setStatusCode(404);
             include_once __DIR__. '/../views/404.php';
             exit;
         } 
@@ -36,22 +37,23 @@ class Router
 
     protected function renderViews($views)
     {
-        $this->renderMain();
-        $this->renderLayoutContent($views);
-        // return str_repeat("{{content}}");
+        $layoutContent = $this->renderMain();
+        $viewContent = $this->renderLayoutContent($views);
+     
+        return str_replace('{{content}}', $viewContent, $layoutContent);
     }
     
     protected function renderMain()
     {   
         // ob_start();
-        $views = "index";
-        include_once __DIR__. "/../views/main/$views.php";
+        include_once Application::$ROOT_PATH. "/demo/views/main/index.php";
         // return ob_get_clean();
     }
     protected function renderLayoutContent($views)
     {
+        // print_r(Application::$ROOT_PATH. "/demo/views/404.php");
         // ob_start();
-        include_once __DIR__. "/../views/$views.php";
+        include_once Application::$ROOT_PATH. "/demo/views/$views.php";
         // return ob_get_clean();
     }
 

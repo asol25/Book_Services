@@ -1,13 +1,10 @@
 <style>
-<?php include_once __DIR__. '/../../assets/css/404.css'; ?>
+    <?php include_once __DIR__. '/../../assets/css/home.css'; ?>
 </style>
 
-<header class="header">
-        <nav class="nav">
-            <ul class="nav__list">
-                <li class="nav__item"><a href="http://localhost:8080/">Home</a></li>
-                <li class="nav__item"><a href="http://localhost:8080/messages">Message</a></li>
-                <li class="nav__item"><a href="http://localhost:8080/short_links">Short_Link</a></li>
-            </ul>
-        </nav>
-</header>
+<div class="topnav">
+  <a class="active" href="/">Home</a>
+  <a href="/messages">Messager</a>
+  <a href="/short_link">Contact</a>
+  <a href="/404">404</a>
+</div>
