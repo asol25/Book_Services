@@ -1,9 +1,9 @@
 <?php
-
 namespace app\core;
+require_once './src/controllers/SiteController.php';
+use app\src\controllers\SiteController;
 class Router
 {
-    public Request $request;
     protected $routes = [];
 
     public function __construct(Request $request)
@@ -13,7 +13,7 @@ class Router
     
     public function get($path, $callback)
     {
-        $this->routes['get'][$path] = $callback;
+        return $this->routes['get'][$path] = $callback;
     }
 
     public function resolve()
@@ -24,37 +24,36 @@ class Router
        
         if ($callback === false) {
             Application::$app->response->setStatusCode(404);
-            include_once __DIR__. '/../views/404.php';
+            include_once Application::$ROOT_PATH. "/demo/views/404.php";
             exit;
         } 
 
-        if (is_string($callback)) {
-            return $this->renderViews($callback);
+        if (is_array($callback)) {
+            $callback[0] = new $callback[0]();
         }
-
+        
         return call_user_func($callback);
     }
 
-    protected function renderViews($views)
+    public function renderViews($views, $params)
     {
-        $layoutContent = $this->renderMain();
-        $viewContent = $this->renderLayoutContent($views);
-     
-        return str_replace('{{content}}', $viewContent, $layoutContent);
+        $layoutContent = $this->renderMainLayout();
+        $viewContent = $this->renderLayoutContent($views, $params);
+
+        return str_replace("{{content}}", $viewContent, $layoutContent);
     }
     
-    protected function renderMain()
+    public function renderMainLayout()
     {   
-        // ob_start();
+        ob_start();
         include_once Application::$ROOT_PATH. "/demo/views/main/index.php";
-        // return ob_get_clean();
-    }
-    protected function renderLayoutContent($views)
-    {
-        // print_r(Application::$ROOT_PATH. "/demo/views/404.php");
-        // ob_start();
-        include_once Application::$ROOT_PATH. "/demo/views/$views.php";
-        // return ob_get_clean();
+        return ob_get_clean();
     }
 
+    public function renderLayoutContent($views, $params)
+    {   
+        ob_start();
+        include_once Application::$ROOT_PATH. "/demo/views/$views.php";
+        return ob_get_clean();
+    }
 }

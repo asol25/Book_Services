@@ -20,8 +20,8 @@ class Application
 
     public function __construct($rootPath)
     {
-        self::$ROOT_PATH = $rootPath;
         self::$app = $this;
+        self::$ROOT_PATH = $rootPath;
         $this->request = new Request();
         $this->response = new Response();
         $this->router = new Router($this->request);
@@ -29,6 +29,6 @@ class Application
 
     public function run()
     {
-        return $this->router->resolve();
+        $this->router->resolve();
     }
 }
