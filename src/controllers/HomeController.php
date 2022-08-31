@@ -2,8 +2,11 @@
 namespace app\src\controllers;
 use app\core\Controller;
 
-class HomeController extends Controller {
-
+class HomeController extends Controller 
+{
+    /**
+     * A method controller of the HomeController.
+     */
     public function HomeController()
     {  
         $views = "home";
@@ -11,4 +14,3 @@ class HomeController extends Controller {
         $this->render($views, $params);
     }
 }
-?>

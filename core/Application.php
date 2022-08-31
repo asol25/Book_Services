@@ -24,6 +24,9 @@ class Application
         $this->router = new Router($this->request);
     }
 
+    /**
+     * A method resolve Routes of the application.
+     */
     public function run()
     {
         $this->router->resolve();
