@@ -5,11 +5,10 @@ class Request
 {
     public function getPath()
     {
-        $path = $_SERVER['REQUEST_URI'] ?? '/';
-        $position = strpos($path, '?') ?? strlen($path);
-        // echo "<pre>";
-        // var_dump(substr($path, 0));
-        // echo "</pre>";
+        $root = '/';
+        $path = $_SERVER['REQUEST_URI'] ?? $root;
+        $action = '?'; 
+        $position = strpos($path, $action) ?? false;
         if ($position === false) {
             return $path;
         }

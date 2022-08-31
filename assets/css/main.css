@@ -23,7 +23,6 @@
   }
 
   .content{
-    width: 850px; 
     margin: auto;
     margin-bottom: 350px; /* Same height as footer */
     padding: 100px 0;
@@ -49,7 +48,7 @@
     width: 100%;
     height: 350px;
     background: #111;
-    position: fixed; left: 0; bottom: 0;
+    /* position: fixed; left: 0; bottom: 0; */
     z-index: -100;
   }
      .fixed_footer p{
