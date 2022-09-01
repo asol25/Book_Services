@@ -12,7 +12,7 @@ class MessageController extends Controller
     public function MessageController()
     {
         $views = "messages";
-        $params = null;
+        $params = " ";
         $this->render($views, $params);
     }
 }

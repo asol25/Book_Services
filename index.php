@@ -1,18 +1,22 @@
 <?php
 session_start();
-?>
-<?php
 require_once 'vendor/autoload.php';
 require_once 'core/application.php';
+
+use app\config\Database;
 use app\core\Application;
-use app\src\controllers\MessageController;
 use app\src\controllers\HomeController;
+use app\src\controllers\MessageController;
+
 $app = new Application(dirname(__DIR__));
+$database = new Database();
 
-$app->router->get('/', [HomeController::class, 'HomeController']);
-$app->router->post('/', [HomeController::class, 'HomeController']);
+$app->router->get('/', (array)[HomeController::class, 'HomeController']);
+$app->router->post('/login', (array)[HomeController::class, 'LoginController']);
 
-$app->router->get('/messages', [MessageController::class, 'MessageController']);
-$app->router->post('/messages', [MessageController::class, 'MessageController']);
+$app->router->get('/messages', (array)[MessageController::class, 'MessageController']);
+$app->router->post('/messages', (array)[MessageController::class, 'MessageController']);
 
 $app->run();
+
+?>

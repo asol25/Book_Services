@@ -3,7 +3,10 @@ namespace app\core;
 
 class Request
 {
-    public function getPath()
+    /** Getter method Path of the request.
+     * @return mixed $path URL.
+     */
+    public function getPath(): mixed
     {
         $root = '/';
         $path = $_SERVER['REQUEST_URI'] ?? $root;
@@ -16,7 +19,10 @@ class Request
         return substr($path, 0, $position);
     }
 
-    public function getMethod()
+    /** Getter Method URL of the request.
+     * @return string Method of the request method.
+     */
+    public function getMethod(): string
     {
         return strtolower($_SERVER['REQUEST_METHOD']);
     }

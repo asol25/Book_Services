@@ -3,8 +3,8 @@
 namespace app\core;
 class Router
 {
-    protected $routes = [];
-    protected $request = null;
+    protected array $routes = [];
+    protected ?Request $request = null;
 
     /**
      * Constructor have one parameter.
@@ -16,33 +16,34 @@ class Router
     }
 
     /**
-     * A method set Router Getter.
-     * @param string $path is the path of controller.
-     * @param string $callback is the callback of the controller.
+     * Setter method of the Getter Routes.
+     * @param string $path is the path of the controller.
+     * @param array $callback is the Array container path of the controller and namely of Method.
+     * @return array $routes is the Array containers the routes.
      */
-    public function get($path, $callback)
+    public function get(string $path, array $callback): array
     {
         return $this->routes['get'][$path] = $callback;
     }
 
-     /**
-     * A method set Router Post.
-     * @param string $path is the path of controller.
-     * @param string $callback is the callback of the controller.
-     */
-    public function post($path, $callback)
+      /**
+      * Setter method of the POST Router.
+      * @param string $path is the path of the controller.
+      * @param array $callback is the Array container the path of the controller and namely of Method.
+      * @return array $routes is the Array containers the routes.
+      */
+    public function post(string $path, array $callback): array
     {
         return $this->routes['post'][$path] = $callback;
     }
 
     /**
      * A method resolve. If the route not matches in Routes then callback to Page 404. TRUE otherwise.
-     * @return mixed call_user_func($callback);
+     * @return mixed call_user_func($callback) call be class in the path of the controller.;
      */
-    public function resolve()
+    public function resolve(): mixed
     {
         $errorCode = 404;
-        $createCode = 200;
         $path = $this->request->getPath();
         $method = $this->request->getMethod();
         $callback = $this->routes[$method][$path] ?? false;
@@ -54,7 +55,6 @@ class Router
             exit;
         }
 
-        print_r($callback);
         if (is_array($callback)) {
             $callback[0] = new $callback[0]();
         }
@@ -63,12 +63,12 @@ class Router
     }
 
     /**
-     * A method render views layout.
-     * @param string $Views is path of the layer views.
-     * @param string $Params is a list of parameters to pass from the controller.
-     * @return mixed str_replace method to render the layout has been generated.
+     * A method render views layout call by the Controller.
+     * @param $views string Views path of the views layer.
+     * @param $params string Params the list params.
+     * @return bool|string str_replace method to render the layout has been generated.
      */
-    public function renderViews($views, $params)
+    public function renderViews(string $views, string $params): bool | string
     {
         $layoutContent = $this->renderMainLayout();
         $viewContent = $this->renderLayoutContent($views, $params);
@@ -80,7 +80,7 @@ class Router
      * A method to render the main layout content. There is nothing to do here.
      * @return string ob_get_clean() method to clean ob_start().
      */
-    public function renderMainLayout()
+    public function renderMainLayout(): string
     {
         ob_start();
         include_once Application::$ROOT_PATH . "/demo/views/main/index.php";
@@ -89,9 +89,9 @@ class Router
 
      /**
      * A method to render the layout content. There is nothing to do here.
-     * @return string ob_get_clean() method to clean ob_start().
+     * @return string ob_get_clean() method to  delete current output buffer of the ob_start() method.
      */
-    public function renderLayoutContent($views, $params)
+    public function renderLayoutContent($views, $params): string
     {
         ob_start();
         include_once Application::$ROOT_PATH . "/demo/views/$views.php";

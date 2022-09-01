@@ -8,11 +8,11 @@ class Controller
 {
     /**
      * A method render of the controller.
-     * @param string $Views is path of the layer views.
-     * @param string $Params is a list of parameters to pass to the controller.
+     * @param string $views is the path of the views layer.
+     * @param string $params is Params the list params.
      */
-    protected function render($views, $params)
+    protected function render(string $views,string $params)
     {
-            return Application::$app->router->renderViews($views, $params);
+        Application::$app->router->renderViews($views, $params);
     }
 }
