@@ -10,28 +10,30 @@ namespace app\config;
 class Database
 {
     /**
-     * @var String is namely of the server database.
+     * @var String servername of the database.
      */
     protected String $servername;
     /**
-     * @var String is username of the server database.
+     * @var String username of the database.
      */
     protected String $username;
     /**
-     * @var String is password of the server database if have.
+     * @var String password of the database.
      */
     protected String $password;
 
     /**
-     * Database constructor.
+     * A constructor of the database.
      */
     public function __construct()
     {
-            $mysql = new MySQL("mysql:host=localhost;dbname=shop", "root","");
+        $mySQL = new MySQL("mysql:host=localhost;dbname=shop", "root","");
+//        $postgreSQL = new PostgreSQL("pgsql:host=localhost;port=5432;dbname=OD_BOOKS_STORE ", "user=postgres ","password=123");
     }
 
     /**
-     * @param String $servername
+     * Setter method for the database.
+     * @param String $servername of the database.
      */
     public function setServername(string $servername): void
     {
@@ -47,7 +49,8 @@ class Database
     }
 
     /**
-     * @param String $username
+     * Setter method for the database.
+     * @param String $username of the database.
      */
     public function setUsername(string $username): void
     {
@@ -63,7 +66,8 @@ class Database
     }
 
     /**
-     * @param String $password
+     * Setter method for the database.
+     * @param String $password of the database.
      */
     public function setPassword(string $password): void
     {
