@@ -11,8 +11,9 @@ class LoginController extends Controller
      */
     public function LoginController()
     {
-        $views = "login";
-        $params = null;
-        $this->render($views, $params);
+        $sdk = $_SESSION['auth'];
+        echo "<pre>";
+        var_dump($sdk->getSdk()->login());
+        echo "</pre>";
     }
 }

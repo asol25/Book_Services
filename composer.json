@@ -8,10 +8,11 @@
     },
     "require": {
         "ext-pdo": "*",
-        "auth0/auth0-php": "2.1",
+        "auth0/auth0-php": "^8.2",
         "kriswallsmith/buzz": "^1.2",
         "nyholm/psr7": "^1.5",
         "vlucas/phpdotenv": "^5.4",
-        "steampixel/simple-php-router": "^0.7.0"
+        "steampixel/simple-php-router": "^0.7.0",
+        "symfony/http-client": "^6.1"
     }
 }
