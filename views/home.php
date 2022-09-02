@@ -1,5 +1,4 @@
 <?php
-// Start the session
 
 echo "<main>
 <h2>Login Form</h2>

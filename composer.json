@@ -8,6 +8,10 @@
     },
     "require": {
         "ext-pdo": "*",
-      "ext-pgsql": "*"
+        "auth0/auth0-php": "2.1",
+        "kriswallsmith/buzz": "^1.2",
+        "nyholm/psr7": "^1.5",
+        "vlucas/phpdotenv": "^5.4",
+        "steampixel/simple-php-router": "^0.7.0"
     }
 }

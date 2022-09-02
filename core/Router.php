@@ -64,14 +64,15 @@ class Router
 
     /**
      * A method render views layout call by the Controller.
-     * @param $views string Views path of the views layer.
-     * @param $params string Params the list params.
+     * @param $views string path of the views layer.
+     * @param string|null $params the list params.
      * @return bool|string str_replace method to render the layout has been generated.
      */
-    public function renderViews(string $views, string $params): bool | string
+    public function renderViews(string $views,
+                                ?string $params): bool | string
     {
         $layoutContent = $this->renderMainLayout();
-        $viewContent = $this->renderLayoutContent($views, $params);
+        $viewContent = $this->renderLayoutContent($views);
 
         return print_r(str_replace("{{content}}", $viewContent, $layoutContent));
     }
@@ -91,7 +92,7 @@ class Router
      * A method to render the layout content. There is nothing to do here.
      * @return string ob_get_clean() method to  delete current output buffer of the ob_start() method.
      */
-    public function renderLayoutContent($views, $params): string
+    public function renderLayoutContent($views): string
     {
         ob_start();
         include_once Application::$ROOT_PATH . "/demo/views/$views.php";

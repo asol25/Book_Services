@@ -24,10 +24,11 @@ class MySQL extends Database implements ActionsDatabase
         $this->setPassword($password);
     }
 
+
     /**
      * A method connect database of the MySQL.
      */
-    public function connection() : void
+    public function connection() : bool
     {
         // TODO: Implement connection() method.
         try {
@@ -42,9 +43,10 @@ class MySQL extends Database implements ActionsDatabase
 
             // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected Mysql successfully";
+            return  true;
         } catch (\PDOException $exception) {
             echo $exception->getMessage();
+            return false;
         }
     }
 

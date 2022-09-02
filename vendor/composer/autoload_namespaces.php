@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Steampixel' => array($vendorDir . '/steampixel/simple-php-router/src'),
+    'OAuth2' => array($vendorDir . '/adoy/oauth2/src'),
 );
