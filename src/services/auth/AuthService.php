@@ -6,8 +6,9 @@ use Auth0\SDK\Configuration\SdkConfiguration;
 use Auth0\SDK\Exception\ConfigurationException;
 
 
-class AuthService
+class AuthService implements AuthServiceInterface
 {
+
     /**
      * @var string $domain of the AuthService.
      */
@@ -32,11 +33,6 @@ class AuthService
      * @var Auth0 $sdk is object interaction with Auth0.com.
      */
     public Auth0 $sdk;
-
-//    /**
-//     * @var AuthRoutes $routes of the AuthService.
-//     */
-//    public AuthRoutes $routes;
 
     /**
      * AuthService constructor.
@@ -73,20 +69,91 @@ class AuthService
     }
 
     /**
-     * Getter method of $sdk
-     * @return Auth0 $sdk is object interaction with Auth0.com.
+     * A method login via the Auth0.
+     */
+    public function login()
+    {
+        // TODO: Implement login() method.
+        try {
+            if (isset($this->sdk))
+                header(sprintf('Location: %s', $this->sdk->login()));
+        }
+        catch (ConfigurationException $e) {
+            echo "<pre>";
+            print_r($e);
+            echo "</pre>";
+        }
+    }
+
+    /**
+     * A method logout via the Auth0.
+     */
+    public function logout()
+    {
+        // TODO: Implement logout() method.
+        try {
+            if (isset($this->sdk))
+                header(sprintf('Location: %s', $this->sdk->logout()));
+        }
+        catch (ConfigurationException $e) {
+            echo "<pre>";
+            print_r($e);
+            echo "</pre>";
+        }
+    }
+
+    /**
+     * A method callback via the Auth0.
+     * Upon returning from the Auth0 Universal Login, we need to perform a code exchange using the `exchange()` method
+     * to complete the authentication flow. This process configures the session for use by the application.
+     *
+     * If successful, the user will be redirected back to the index route.
+     */
+    public function callback()
+    {
+        // TODO: Implement callback() method.
+
+        $hasAuthenticated = isset($_GET['state']) && isset($_GET['code']);
+        $hasAuthenticationFailure = isset($_GET['error']);
+
+        // The end user will be returned with ?state and ?code values in their request, when successful.
+        if ($hasAuthenticated) {
+            try {
+                var_dump($_GET);
+                $this->sdk->exchange();
+            } catch (\Throwable $th) {
+                printf('Unable to complete authentication: %s', $th->getMessage());
+                exit;
+            }
+        }
+
+        // When authentication was unsuccessful, the end user will be returned with an ?error in their request.
+        if ($hasAuthenticationFailure) {
+            printf('Authentication failure: %s', htmlspecialchars(strip_tags(filter_input(INPUT_GET, 'error'))));
+            exit;
+        }
+
+
+        // Nothing to do: redirect to index route.
+        header('Location: /');
+    }
+
+    /**
+     * A method checked for getCredentials. If account have been login return Object, FALSE otherwise.
+     * @return object|null of getCredentials.
+     */
+    public function getCredentials(): ?object
+    {
+        // TODO: Implement getCredentials() method.
+        return $this->sdk->getCredentials();
+    }
+
+    /**
+     * Getter method for $sdk.
+     * @return Auth0 $sdk of the AuthService.
      */
     public function getSdk(): Auth0
     {
         return $this->sdk;
     }
-
-//    /**
-//     * Getter method of authRoutes.
-//     * @return AuthRoutes $routes of the AuthService.
-//     */
-//    public function getAuthRoutes(): AuthRoutes
-//    {
-//        return $this->routes;
-//    }
 }
