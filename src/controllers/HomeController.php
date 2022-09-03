@@ -9,7 +9,7 @@ class HomeController extends Controller
      */
     public function HomeController()
     {  
-        $views = "home";
+        $views = "homepage";
         $params = null;
         $this->render($views, $params);
     }

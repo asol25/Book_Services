@@ -111,7 +111,7 @@ class AuthService implements AuthServiceInterface
      *
      * If successful, the user will be redirected back to the index route.
      */
-    public function callback()
+    public function callback() : void
     {
         // TODO: Implement callback() method.
 
