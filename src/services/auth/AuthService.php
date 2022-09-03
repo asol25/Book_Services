@@ -9,6 +9,8 @@ use Auth0\SDK\Exception\ConfigurationException;
 class AuthService implements AuthServiceInterface
 {
 
+    //DO_NOT_EDIT_BELOW_THIS_LINE
+    
     /**
      * @var string $domain of the AuthService.
      */

@@ -11,6 +11,8 @@ use PDO;
  */
 class MySQL extends Database implements ActionsDatabase
 {
+    //DO_NOT_EDIT_BELOW_THIS_LINE
+    
     /**
      * A constructor with three parameters.
      * @param string $servername of the the database.

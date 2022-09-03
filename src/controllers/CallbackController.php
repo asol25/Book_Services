@@ -13,5 +13,6 @@ class CallbackController extends Controller
     {
         $auth = $_SESSION['auth'];
         $auth->callback();
+        unset($_SESSION['auth']);
     }
 }

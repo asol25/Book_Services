@@ -8,6 +8,7 @@ use PDO;
 
 class PostgreSQL extends Database implements ActionsDatabase
 {
+    //DO_NOT_EDIT_BELOW_THIS_LINE
 
     /**
      * A constructor with three parameters.

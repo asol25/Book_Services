@@ -12,7 +12,6 @@ class ProfileController extends Controller
     {
         $auth = $_SESSION['auth'];
         $session = $auth->getCredentials();
-        var_dump($session);
         $authenticated = $session !== null;
 
         $template = [
