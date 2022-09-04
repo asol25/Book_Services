@@ -26,8 +26,7 @@ $app->router->get('/logout', (array)[LogoutController::class, 'LogoutController'
 $app->router->get('/profile', (array)[ProfileController::class, 'ProfileController']);
 $app->router->get('/callback', (array)[CallbackController::class, 'CallbackController']);
 
-$app->router->get('/messages', (array)[MessageController::class, 'MessageController']);
-$app->router->post('/messages', (array)[MessageController::class, 'MessageController']);
+$app->router->post('/payment', (array)[MessageController::class, 'MessageController']);
 
 $app->run();
 ?>

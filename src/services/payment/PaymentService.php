@@ -5,15 +5,12 @@ namespace app\src\services\payment;
 
 class PaymentService
 {
+    //DO_NOT_EDIT_BELOW_THIS_LINE
+    
     /**
      * @var Create_payment_url of the Payment Services.
      */
     public Create_payment_url $CreatePaymentUrl;
-
-    /**
-     * @var Return_payment_url of the Payment Service.
-     */
-    public Return_payment_url $ReturnPaymentUrl;
 
     /**
      * @var string The version of the api that the merchant connects to. Current versions are : 2.0.1 and 2.1.0.
@@ -98,19 +95,14 @@ class PaymentService
      * @param string $vnp_OrderInfo                 Information describing payment content (Vietnamese, unsigned).
      * @param string|null $vnp_OrderType            Commodity code. Each commodity will belong to a group of lists specified by VNPAY.
      * @param string $vnp_TxnRef                    Reference code of the transaction at the merchant's system. This code is only used to distinguish.
-     * @param string $vnp_SecureHash                Checksum code to ensure the transaction's data is not changed during the transition from merchant to VNPAY.
      */
     public function __construct(int $vnp_Amount,
                                 ?string $vnp_BankCode,
                                 string $vnp_Locale,
                                 string $vnp_OrderInfo,
                                 ?string $vnp_OrderType,
-                                string $vnp_TxnRef,
-                                string $vnp_SecureHash)
+                                string $vnp_TxnRef)
     {
-        $this->CreatePaymentUrl = new Create_payment_url();
-        $this->ReturnPaymentUrl = new Return_payment_url();
-
         $this->vnp_Version = "2.1.0";
         $this->vnp_TmnCode = "ZI3R0K6W";
         $this->vnp_Command = "pay";
@@ -120,13 +112,150 @@ class PaymentService
         $this->setVnpCurrCode();
         $this->setVnpIpAddr();
         $this->setVnpReturnUrl();
+        $this->setVnpSecureHash();
 
         $this->vnp_BankCode = $vnp_BankCode;
         $this->vnp_Locale = $vnp_Locale || "vn";
         $this->vnp_OrderInfo = $vnp_OrderInfo;
         $this->vnp_OrderType = $vnp_OrderType;
         $this->vnp_TxnRef = $vnp_TxnRef;
-        $this->vnp_SecureHash = $vnp_SecureHash;
+    }
+
+
+    /**
+     * Getter for CreatePaymentUrl.
+     * @return Create_payment_url of the Payment Service.
+     */
+    public function getCreatePaymentUrl(): Create_payment_url
+    {
+        return $this->CreatePaymentUrl;
+    }
+
+    /**
+     * Getter for vnp_Version.
+     * @return string of the Payment Service.
+     */
+    public function getVnpVersion(): string
+    {
+        return $this->vnp_Version;
+    }
+
+    /**
+     * Getter for vnp_Command.
+     * @return string of the Payment Service.
+     */
+    public function getVnpCommand(): string
+    {
+        return $this->vnp_Command;
+    }
+
+    /**
+     * Getter for vnp_TmnCode.
+     * @return string of the Payment Service.
+     */
+    public function getVnpTmnCode(): string
+    {
+        return $this->vnp_TmnCode;
+    }
+
+
+    /**
+     * Getter for vnp_Amount.
+     * @return int of the Payment Service.
+     */
+    public function getVnpAmount(): int
+    {
+        return $this->vnp_Amount;
+    }
+
+    /**
+     * Getter for vnp_BankCode.
+     * @return string|null of the Payment Service.
+     */
+    public function getVnpBankCode(): ?string
+    {
+        return $this->vnp_BankCode;
+    }
+
+    /**
+     * Getter for vnp_CreateDate.
+     * @return string of the Payment Service.
+     */
+    public function getVnpCreateDate(): string
+    {
+        return $this->vnp_CreateDate;
+    }
+
+    /**
+     * Getter for vnp_CurrCode.
+     * @return string of the Payment Service.
+     */
+    public function getVnpCurrCode(): string
+    {
+        return $this->vnp_CurrCode;
+    }
+
+    /**
+     * Getter for getVnpIpAddr.
+     * @return string of the Payment Service.
+     */
+    public function getVnpIpAddr(): string
+    {
+        return $this->vnp_IpAddr;
+    }
+
+    /**
+     * Getter for getVnpLocale.
+     * @return string | bool of the Payment Service.
+     */
+    public function getVnpLocale(): string | bool
+    {
+        return $this->vnp_Locale;
+    }
+
+    /**
+     * Getter for vnp_OrderInfo.
+     * @return string of the Payment Service.
+     */
+    public function getVnpOrderInfo(): string
+    {
+        return $this->vnp_OrderInfo;
+    }
+
+    /**
+     * Getter for vnp_OrderType.
+     * @return string|null  of the Payment Service.
+     */
+    public function getVnpOrderType(): ?string
+    {
+        return $this->vnp_OrderType;
+    }
+
+    /**
+     * Getter for vnp_ReturnUrl.
+     * @return string of the Payment Service.
+     */
+    public function getVnpReturnUrl(): string
+    {
+        return $this->vnp_ReturnUrl;
+    }
+
+    /**
+     * Getter for vnp_TxnRef.
+     * @return string of the Payment Service.
+     */
+    public function getVnpTxnRef(): string
+    {
+        return $this->vnp_TxnRef;
+    }
+
+    /**
+     * Getter for vnp_SecureHash.
+     * @return string of the Payment Service.
+     */
+    public function getVnpSecureHash(): string
+    {
+        return $this->vnp_SecureHash;
     }
 
     /**
@@ -173,5 +302,14 @@ class PaymentService
     {
         $formatDate = date('YmdHis');
         $this->vnp_CreateDate = $formatDate;
+    }
+
+    /**
+     * Setter for vnp_SecureHash.
+     */
+    public function setVnpSecureHash(): void
+    {
+        $hash = "CNRCCZMEUTTKKDDSITDRUKTVVBWLOUVG";
+        $this->vnp_SecureHash = $hash;
     }
 }
