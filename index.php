@@ -11,8 +11,11 @@ use app\src\controllers\HomeController;
 use app\src\controllers\LoginController;
 use app\src\controllers\LogoutController;
 use app\src\controllers\MessageController;
+use app\src\controllers\PaymentController;
 use app\src\controllers\ProfileController;
 use app\src\services\auth\AuthService;
+use app\src\services\payment\PaymentService;
+
 $app = new Application(dirname(__DIR__));
 $database = new Database();
 $auth = new AuthService();
@@ -26,7 +29,9 @@ $app->router->get('/logout', (array)[LogoutController::class, 'LogoutController'
 $app->router->get('/profile', (array)[ProfileController::class, 'ProfileController']);
 $app->router->get('/callback', (array)[CallbackController::class, 'CallbackController']);
 
-$app->router->post('/payment', (array)[MessageController::class, 'MessageController']);
+$app->router->get('/payment', (array)[PaymentController::class, 'PaymentController']);
+$app->router->get('/payment/callback', (array)[PaymentController::class, 'PaymentPageController']);
+$app->router->post('/payment/callback', (array)[PaymentController::class, 'PaymentPageController']);
 
 $app->run();
 ?>

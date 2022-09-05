@@ -3,7 +3,8 @@
 
 namespace app\src\services\payment;
 
-
+error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 class Create_payment_url extends PaymentService implements IPaymentService
 {
     /**
@@ -11,7 +12,15 @@ class Create_payment_url extends PaymentService implements IPaymentService
      */
     private string $URL;
 
-
+    /**
+     * Create_payment_url constructor.
+     * @param int $vnp_Amount                       Payment amount.
+     * @param string|null $vnp_BankCode             Payment Bank Code.
+     * @param string $vnp_Locale                    Display interface language. Currently support Vietnamese (vn), English (en).
+     * @param string $vnp_OrderInfo                 Information describing payment content (Vietnamese, unsigned).
+     * @param string|null $vnp_OrderType            Commodity code. Each commodity will belong to a group of lists specified by VNPAY.
+     * @param string $vnp_TxnRef                    Reference code of the transaction at the merchant's system. This code is only used to distinguish.
+     */
     public function __construct(int $vnp_Amount,
                                 ?string $vnp_BankCode,
                                 string $vnp_Locale,
@@ -22,7 +31,10 @@ class Create_payment_url extends PaymentService implements IPaymentService
         parent::__construct($vnp_Amount, $vnp_BankCode, $vnp_Locale, $vnp_OrderInfo, $vnp_OrderType, $vnp_TxnRef);
     }
 
-
+    /**
+     * Contact parameters to the URL.
+     * @return string the URL to request system of the VnPay.
+     */
     private function concatString() : string
     {
         $input = array(
@@ -37,7 +49,8 @@ class Create_payment_url extends PaymentService implements IPaymentService
             "vnp_OrderInfo" => $this->getVnpOrderInfo(),
             "vnp_OrderType" => $this->getVnpOrderType(),
             "vnp_ReturnUrl" => $this->getVnpReturnUrl(),
-            "vnp_TxnRef" => $this->getVnpTxnRef()
+            "vnp_ExpireDate" => $this->getVnpExpire(),
+            "vnp_TxnRef" => $this->getVnpTxnRef(),
         );
 
         ksort($input);
@@ -54,13 +67,18 @@ class Create_payment_url extends PaymentService implements IPaymentService
             $query .= urlencode($key) . "=" . urlencode($value) . '&';
         }
         $configURL = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        return $this->URL =  $configURL . "?" . $query;
+        $this->URL =  $configURL . "?" . $query;
+
+        $vnpSecureHash =  hash_hmac("sha512", $hashData, $this->getVnpSecureHash());
+        $this->URL .= 'vnp_SecureHash=' . $vnpSecureHash;
+
+        return $this->URL;
     }
 
     public function requestPayment()
     {
         // TODO: Implement requestPayment() method.
-        var_dump($this->concatString());
+        header('Location: ' . $this->concatString());
     }
 
 }

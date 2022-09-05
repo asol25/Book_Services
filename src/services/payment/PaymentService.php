@@ -2,7 +2,8 @@
 
 
 namespace app\src\services\payment;
-
+error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 class PaymentService
 {
     //DO_NOT_EDIT_BELOW_THIS_LINE
@@ -43,6 +44,11 @@ class PaymentService
      * @var string Is the transaction time in the format yyyyMMddHHmmss(Time zone GMT+7)Example: 20170829103111.
      */
     protected string $vnp_CreateDate;
+
+     /**
+     * @var string Is the transaction time in the format yyyyMMddHHmmss(Time zone GMT+7)Example: 20170829103111.
+     */
+    protected string $vnp_Expire;
 
     /**
      * @var string Currency used for payment. Currently only support VND.
@@ -109,6 +115,7 @@ class PaymentService
 
         $this->setVnpAmount($vnp_Amount);
         $this->setVnpCreateDate();
+        $this->setVnpExpire();
         $this->setVnpCurrCode();
         $this->setVnpIpAddr();
         $this->setVnpReturnUrl();
@@ -303,6 +310,26 @@ class PaymentService
         $formatDate = date('YmdHis');
         $this->vnp_CreateDate = $formatDate;
     }
+
+    /**
+     * Getter for vnp_Expire.
+     * @return string of the Payment Service.
+     */
+    public function getVnpExpire(): string
+    {
+        return $this->vnp_Expire;
+    }
+
+    /**
+     * Setter for vnp_Expire.
+     */
+    public function setVnpExpire(): void
+    {
+        $formatDate =  date('YmdHis',strtotime('+15 minutes',strtotime($this->vnp_CreateDate)));;
+
+        $this->vnp_Expire = $formatDate;
+    }
+
 
     /**
      * Setter for vnp_SecureHash.
