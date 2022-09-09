@@ -6,4 +6,12 @@ const config = {
     storageBucket: "gs://images-services-52149.appspot.com",
     messagingSenderId: "388061356865"
 };
-firebase.initializeApp(config);
+const app =  initializeApp(config);
+const storage = app.storage();  
+const defaultBucket  = storage.ref('images');
+
+function uploadInfoPicture(event) {
+    event.preventDefault();
+
+    storage.Reference().put()
+}

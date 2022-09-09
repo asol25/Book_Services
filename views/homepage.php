@@ -1,5 +1,9 @@
 <?php
 
+echo "<pre>";
+var_dump($_SERVER);
+var_dump($database, $auth);
+echo "</pre>";
 echo "<main>
 <h2>Login Form</h2>
 

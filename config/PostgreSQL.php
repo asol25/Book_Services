@@ -6,7 +6,7 @@ namespace app\config;
 
 use PDO;
 
-class PostgreSQL extends Database implements ActionsDatabase
+class PostgreSQL extends Database 
 {
     //DO_NOT_EDIT_BELOW_THIS_LINE
 
@@ -37,26 +37,6 @@ class PostgreSQL extends Database implements ActionsDatabase
             print_r($exception);
             echo "</pre>";
         }
-    }
-
-    public function get()
-    {
-        // TODO: Implement get() method.
-    }
-
-    public function create()
-    {
-        // TODO: Implement create() method.
-    }
-
-    public function update()
-    {
-        // TODO: Implement update() method.
-    }
-
-    public function remove()
-    {
-        // TODO: Implement remove() method.
     }
 
     public function __destruct()

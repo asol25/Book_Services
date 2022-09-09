@@ -3,7 +3,7 @@
 
 namespace app\src\controllers;
 
-
+use app\core\Application;
 use app\core\Controller;
 
 class LogoutController extends Controller
@@ -13,7 +13,7 @@ class LogoutController extends Controller
      */
     public function LogoutController()
     {
-        $auth = $_SESSION['auth'];
+        $auth = Application::$auth;
         $auth->logout();
     }
 }

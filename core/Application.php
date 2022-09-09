@@ -3,9 +3,13 @@ namespace app\core;
 require_once 'Router.php';
 require_once 'Request.php';
 require_once 'Response.php';
+
+use app\config\Database;
 use app\core\Router;
 use app\core\Request;
 use app\core\Response;
+use app\src\services\auth\AuthService;
+use Auth0\SDK\Auth0;
 
 class Application
 {
@@ -14,6 +18,9 @@ class Application
     public Router $router;
     public Request $request;
     public Response $response;
+    public static Database $database;
+    public static $auth;
+
 
     public function __construct($rootPath)
     {
@@ -22,6 +29,8 @@ class Application
         $this->request = new Request();
         $this->response = new Response();
         $this->router = new Router($this->request);
+        self::$database = new Database();
+        self::$auth = new AuthService();
     }
 
     /**

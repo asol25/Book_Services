@@ -17,10 +17,6 @@ use app\src\services\auth\AuthService;
 use app\src\services\payment\PaymentService;
 
 $app = new Application(dirname(__DIR__));
-$database = new Database();
-$auth = new AuthService();
-
-$_SESSION['auth'] = $auth;
 
 $app->router->get('/', (array)[HomeController::class, 'HomeController']);
 $app->router->get('/login', (array)[LoginController::class, 'LoginController']);
@@ -28,6 +24,8 @@ $app->router->post('/login', (array)[LoginController::class, 'LoginController'])
 $app->router->get('/logout', (array)[LogoutController::class, 'LogoutController']);
 $app->router->get('/profile', (array)[ProfileController::class, 'ProfileController']);
 $app->router->get('/callback', (array)[CallbackController::class, 'CallbackController']);
+
+$app->router->get('/add', (array)[CallbackController::class, 'addController']);
 
 $app->router->get('/payment', (array)[PaymentController::class, 'PaymentController']);
 $app->router->get('/payment/callback', (array)[PaymentController::class, 'PaymentPageController']);

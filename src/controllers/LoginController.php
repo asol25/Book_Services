@@ -2,6 +2,8 @@
 
 
 namespace app\src\controllers;
+
+use app\core\Application;
 use app\core\Controller;
 
 class LoginController extends Controller
@@ -11,7 +13,7 @@ class LoginController extends Controller
      */
     public function LoginController()
     {
-        $auth = $_SESSION['auth'];
+        $auth = Application::$auth;
         $auth->login();
     }
 }

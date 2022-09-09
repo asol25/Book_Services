@@ -3,12 +3,17 @@
 
 namespace app\config;
 
+use app\core\Application;
+use app\core\Request;
+use Buzz\Exception\CallbackException;
+
 /**
  * Class Database
  * @package app\config
  */
 class Database
 {
+
     /**
      * @var String servername of the database.
      */
@@ -73,5 +78,4 @@ class Database
     {
         $this->password = $password;
     }
-
 }

@@ -3,17 +3,19 @@
 
 namespace app\src\controllers;
 
-
+use app\core\Application;
 use app\core\Controller;
 
 class ProfileController extends Controller
 {
     public function ProfileController()
     {
-        $auth = $_SESSION['auth'];
+        $auth = Application::$auth;
         $session = $auth->getCredentials();
         $authenticated = $session !== null;
 
+        echo "<pre>";
+        echo "</pre>";
         $template = [
             'name' => $authenticated ? $session->user['email'] : 'guest',
             'picture' => $authenticated ? $session->user['picture'] : null,

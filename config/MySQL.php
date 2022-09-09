@@ -9,7 +9,7 @@ use PDO;
  * Class MySQL
  * @package app\config
  */
-class MySQL extends Database implements ActionsDatabase
+class MySQL extends Database
 {
     //DO_NOT_EDIT_BELOW_THIS_LINE
     
@@ -50,26 +50,6 @@ class MySQL extends Database implements ActionsDatabase
             echo $exception->getMessage();
             return false;
         }
-    }
-
-    public function get()
-    {
-        // TODO: Implement get() method.
-    }
-
-    public function create()
-    {
-        // TODO: Implement create() method.
-    }
-
-    public function update()
-    {
-        // TODO: Implement update() method.
-    }
-
-    public function remove()
-    {
-        // TODO: Implement remove() method.
     }
 
     /**
