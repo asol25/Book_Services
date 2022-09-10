@@ -7,6 +7,7 @@ require_once 'core/application.php';
 use app\config\Database;
 use app\core\Application;
 use app\src\controllers\CallbackController;
+use app\src\controllers\GetController;
 use app\src\controllers\HomeController;
 use app\src\controllers\LoginController;
 use app\src\controllers\LogoutController;
@@ -25,7 +26,7 @@ $app->router->get('/logout', (array)[LogoutController::class, 'LogoutController'
 $app->router->get('/profile', (array)[ProfileController::class, 'ProfileController']);
 $app->router->get('/callback', (array)[CallbackController::class, 'CallbackController']);
 
-$app->router->get('/add', (array)[CallbackController::class, 'addController']);
+$app->router->get('/getAll', (array)[GetController::class, 'GetAllController']);
 
 $app->router->get('/payment', (array)[PaymentController::class, 'PaymentController']);
 $app->router->get('/payment/callback', (array)[PaymentController::class, 'PaymentPageController']);

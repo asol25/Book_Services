@@ -13,9 +13,10 @@ interface IProduct
          *
          */
 
-    public function get();
+    public function getAll();
+    public function getID($id);
     public function create();
-    public function update();
-    public function remove();
+    public function update($object, $id);
+    public function remove($object, $id);
 
 }
