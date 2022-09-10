@@ -93,6 +93,28 @@ class PaymentService
      */
     protected string $vnp_SecureHash;
 
+    // EXTRA
+
+
+    /**
+     * @var string The email of the customer.
+     */
+    protected string $vnp_Inv_Email;
+
+    /**
+     * @var string The address of the customer.
+     */
+    protected string $vnp_Bill_Address;
+
+    /**
+     * @var string The number phone of the customer.
+     */
+    protected string $vnp_Inv_Phone;
+
+    /**
+     * @var string The Tax code country of the customer.
+     */
+    protected string $vnp_Inv_Taxcode;
     /**
      * PaymentService constructor have seven parameter.
      * @param int $vnp_Amount                       Payment amount
