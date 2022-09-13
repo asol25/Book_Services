@@ -8,6 +8,7 @@ use app\config\Database;
 use app\core\Router;
 use app\core\Request;
 use app\core\Response;
+use app\src\models\Product;
 use app\src\services\auth\AuthService;
 use app\src\services\CallAPI;
 use Auth0\SDK\Auth0;
@@ -21,8 +22,7 @@ class Application
     public Response $response;
     public static Database $database;
     public static AuthService $auth;
-    public static CallAPI $fetch;
-
+    public static Product $product;
 
     public function __construct($rootPath)
     {
@@ -33,7 +33,7 @@ class Application
         $this->router = new Router($this->request);
         self::$database = new Database();
         self::$auth = new AuthService();
-        self::$fetch = new CallAPI();
+        self::$product = new Product();
     }
 
     /**

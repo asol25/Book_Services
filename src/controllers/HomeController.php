@@ -1,6 +1,8 @@
 <?php 
 namespace app\src\controllers;
+use app\core\Application;
 use app\core\Controller;
+use app\src\models\Product;
 
 class HomeController extends Controller
 {
@@ -9,9 +11,10 @@ class HomeController extends Controller
      */
     public function HomeController()
     {  
-        $views = "homepage";
-        $params = null;
-        $this->render($views, $params);
+        $views = "Homepage";
+        $products = Application::$product;
+        $products = $products->getAll();
+        $this->render($views,  $products);
     }
 
 }

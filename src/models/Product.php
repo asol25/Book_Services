@@ -16,9 +16,9 @@ class Product implements IProduct
 
     /**
      * Getter method for the products.
-     * @return array|string Object container information for the products.
+     * @return array|string|object Object container information for the products.
      */
-    public function getAll(): array|string
+    public function getAll(): array|string|object
     {
         // TODO: Implement getAll() method
         if (empty($_SESSION['products'])) {
