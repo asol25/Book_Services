@@ -51,7 +51,6 @@ class Router
         if (!$callback) {
             $pathError = "views/404.php";
             Application::$app->response->setStatusCode($errorCode);
-            include_once Application::$ROOT_PATH . $pathError;
             exit;
         }
 
@@ -84,7 +83,7 @@ class Router
     public function renderMainLayout(): string  
     {
         ob_start();
-        include_once Application::$ROOT_PATH . "views/main/index.php";
+        include_once "views/main/index.php";
         return ob_get_clean();
     }
 
@@ -95,7 +94,7 @@ class Router
     public function renderLayoutContent($views, mixed $params): string
     {
         ob_start();
-        include_once Application::$ROOT_PATH . "views/$views.php";
+        include_once "views/$views.php";
         return ob_get_clean();
     }
 }
