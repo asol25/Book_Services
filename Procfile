@@ -1,1 +1,1 @@
-web: vendor/bin/heroku-php-apache2 config-cluster/
+web: vendor/bin/heroku-php-apache2 web/
