@@ -81,7 +81,7 @@ class Router
      * A method to render the main layout content. There is nothing to do here.
      * @return string ob_get_clean() method to clean ob_start().
      */
-    public function renderMainLayout(): string
+    public function renderMainLayout(): string  
     {
         ob_start();
         include_once Application::$ROOT_PATH . "config-cluster/views/main/index.php";

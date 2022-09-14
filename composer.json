@@ -1,19 +1,27 @@
 {
-    "name": "asol/messager",
-    "description": "Simple Chat Messager",
-    "autoload": {
-        "psr-4": {
-            "app\\": "./"
-        }
-    },
-    "require": {
-        "ext-pdo": "*",
-        "auth0/auth0-php": "^8.2",
-        "kriswallsmith/buzz": "^1.2",
-        "nyholm/psr7": "^1.5",
-        "vlucas/phpdotenv": "^5.4",
-        "steampixel/simple-php-router": "^0.7.0",
-        "symfony/http-client": "^6.1",
-      "ext-curl": "*"
+  "name": "asol/messager",
+  "description": "Simple Chat Messager",
+  "autoload": {
+    "psr-4": {
+      "app\\": "./"
     }
+  },
+  "require": {
+    "ext-pdo": "*",
+    "auth0/auth0-php": "^8.2",
+    "kriswallsmith/buzz": "^1.2",
+    "nyholm/psr7": "^1.5",
+    "vlucas/phpdotenv": "^5.4",
+    "steampixel/simple-php-router": "^0.7.0",
+    "symfony/http-client": "^6.1",
+    "ext-curl": "*",
+    "silex/silex": "^2.0.4",
+    "monolog/monolog": "^1.22",
+    "twig/twig": "^2.0",
+    "symfony/twig-bridge": "^3",
+    "alrik11es/cowsayphp": "^1.2"
+  },
+  "require-dev": {
+    "heroku/heroku-buildpack-php": "*"
+  }
 }

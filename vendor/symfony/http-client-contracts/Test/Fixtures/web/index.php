@@ -1,5 +1,10 @@
 <?php
 
+$app->get('/cowsay', function() use($app) {
+    $app['monolog']->addDebug('cowsay');
+    return "<pre>".\Cowsayphp\Cow::say("Cool beans")."</pre>";
+});
+
 if ('cli-server' !== \PHP_SAPI) {
     // safe guard against unwanted execution
     throw new \Exception("You cannot run this script directly, it's a fixture for TestHttpServer.");

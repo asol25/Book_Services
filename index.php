@@ -28,4 +28,3 @@ $app->router->get('/payment/callback', (array)[PaymentController::class, 'Paymen
 $app->router->post('/payment/callback', (array)[PaymentController::class, 'PaymentPageController']);
 
 $app->run();
-?>

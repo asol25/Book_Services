@@ -6,5 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Twig_' => array($vendorDir . '/twig/twig/lib'),
     'Steampixel' => array($vendorDir . '/steampixel/simple-php-router/src'),
+    'Pimple' => array($vendorDir . '/pimple/pimple/src'),
 );
