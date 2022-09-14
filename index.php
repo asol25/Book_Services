@@ -1,8 +1,7 @@
 <?php
 session_start();
 require_once 'vendor/autoload.php';
-require_once 'core/application.php';
-include_once 'core/Application.php';
+require_once 'core/Application.php';
 use app\core\Application;
 use app\src\controllers\CallbackController;
 use app\src\controllers\HomeController;
