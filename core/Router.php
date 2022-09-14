@@ -66,7 +66,7 @@ class Router
      * A method render views layout call by the Controller.
      * @param $views string path of the views layer.
      * @param mixed $params the list params.
-     * @return bool|string str_replace method to render the layout has been generated
+     * @return bool|string str_replace method to render the layout has been generated.
      */
     public function renderViews(string $views,
                                 mixed $params): bool | string
