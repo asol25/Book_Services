@@ -3,7 +3,7 @@
         'name' => 'asol/messager',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '45fc8cfda0898649593c2b19780ea4ccc1bfd28d',
+        'reference' => '7b3c54537effef88fbda3ce61548de114c77ac6b',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'asol/messager' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '45fc8cfda0898649593c2b19780ea4ccc1bfd28d',
+            'reference' => '7b3c54537effef88fbda3ce61548de114c77ac6b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
