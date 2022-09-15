@@ -43,7 +43,11 @@ class Database
         $this->username = $username;
         $this->password = $password;
         $this->cleardb_db = $cleardb_db;
-        $conn = new MySQL($servername . ";" . $cleardb_db, $username, $password);
+        $conn = new MySQL(
+            "mysql:host=$servername;dbname=$cleardb_db",
+            $username,
+            $password
+        );
         try {
             //code...
             echo "Connection established database.";
