@@ -6,6 +6,7 @@ namespace app\config;
 use app\core\Application;
 use app\core\Request;
 use Buzz\Exception\CallbackException;
+use PDO;
 
 /**
  * Class Database
@@ -43,16 +44,22 @@ class Database
         $this->username = $username;
         $this->password = $password;
         $this->cleardb_db = $cleardb_db;
-        $conn = new MySQL(
-            "mysql:host=$servername;dbname=$cleardb_db",
-            $username,
-            $password
-        );
+        
         try {
+            $conn = new PDO(
+                "mysql:host=$servername;dbname=$cleardb_db",
+                $username,
+                $password
+            );
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             //code...
-            echo "Connection established database.";
-        } catch (\Throwable $th) {
-            echo $th;
+            echo "<pre>";
+            print_r($conn);
+            echo "</pre>";
+        } catch (\PDOException  $th) {
+            echo "<pre>";
+            print_r($th->getMessage());
+            echo "</pre>";
             //throw $th;
         }
     }
