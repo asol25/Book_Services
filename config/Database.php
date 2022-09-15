@@ -18,22 +18,31 @@ class Database
      * @var String servername of the database.
      */
     protected String $servername;
+
     /**
      * @var String username of the database.
      */
     protected String $username;
+
     /**
      * @var String password of the database.
      */
     protected String $password;
 
     /**
+     * @var String database name of the database.
+     */
+    protected String $cleardb_db;
+
+    /**
      * A constructor of the database.
      */
-    public function __construct()
+    public function __construct($servername, $username, $password, $cleardb_db)
     {
-        $mySQL = new MySQL("mysql:host=localhost;dbname=shop", "root","");
-//        $postgreSQL = new PostgreSQL("pgsql:host=localhost;port=5432;dbname=OD_BOOKS_STORE ", "user=postgres ","password=123");
+        $this->servername = $servername;
+        $this->username = $username;
+        $this->password = $password;
+        $this->cleardb_db = $cleardb_db;
     }
 
     /**

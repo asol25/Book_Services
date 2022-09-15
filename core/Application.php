@@ -20,7 +20,7 @@ class Application
     public Router $router;
     public Request $request;
     public Response $response;
-    // public static Database $database;
+    public static Database $database;
     public static AuthService $auth;
     public static Product $product;
 
@@ -31,7 +31,7 @@ class Application
         $this->request = new Request();
         $this->response = new Response();
         $this->router = new Router($this->request);
-        // self::$database = new Database();
+        self::$database = new Database("us-cdbr-east-06.cleardb.net", "b7bc8aa38cd488", "f7d98722", "shop");
         self::$auth = new AuthService();
         self::$product = new Product();
     }
