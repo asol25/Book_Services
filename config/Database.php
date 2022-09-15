@@ -43,6 +43,14 @@ class Database
         $this->username = $username;
         $this->password = $password;
         $this->cleardb_db = $cleardb_db;
+        $conn = mysqli_connect($servername, $username, $password, $cleardb_db);
+        try {
+            //code...
+            echo "Connection established database.";
+        } catch (\Throwable $th) {
+            echo $th;
+            //throw $th;
+        }
     }
 
     /**
