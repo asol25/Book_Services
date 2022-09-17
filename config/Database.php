@@ -7,6 +7,7 @@ use app\core\Application;
 use app\core\Request;
 use Buzz\Exception\CallbackException;
 use PDO;
+use PDOException;
 
 /**
  * Class Database
@@ -36,31 +37,25 @@ class Database
     protected String $cleardb_db;
 
     /**
-     * A constructor of the database.
+     * Database constructor.
+     * @param $servername           String servername of the database
+     * @param $username             String username of the database.
+     * @param $password             String password of the database.
+     * @param $cleardb_db           String database name of the database.
      */
-    public function __construct($servername, $username, $password, $cleardb_db)
+    public function __construct(string $servername, string $username, string $password, string $cleardb_db)
     {
         $this->servername = $servername;
         $this->username = $username;
         $this->password = $password;
         $this->cleardb_db = $cleardb_db;
-        
+
         try {
-            $conn = new PDO(
-                "mysql:host=$servername;dbname=$cleardb_db",
-                $username,
-                $password
-            );
+            $conn = new PDO("mysql:host=$servername;dbname=$cleardb_db", $username, $password);
+            // set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            //code...
-            echo "<pre>";
-            print_r($conn);
-            echo "</pre>";
-        } catch (\PDOException  $th) {
-            echo "<pre>";
-            print_r($th->getMessage());
-            echo "</pre>";
-            //throw $th;
+        } catch (PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
         }
     }
 
