@@ -42,8 +42,8 @@ class AuthService implements AuthServiceInterface
     public function __construct()
     {
         $this->domain = 'dev-kyhdhfgu.us.auth0.com';
-        $this->client_id = 'pwgFU3QagLxrggcJBjkwldc5p5m3Cah0';
-        $this->client_secret = 'M_R1jhDP9sikdHJuN0nsl8gj_0su2d9FOMeSP0sG1Y_NoR6SWujC56P1TtB4nf2S';
+        $this->client_id = 'OX1MW0dPNSWwWFCNnscwABjsAXwSVhYN';
+        $this->client_secret = 'ovv7mIvfOjbJ5c1TZg7mutOiBLCStUTfVmGOTzNu7QWhE70I-uDvk7vNZ7_Ybtgx';
         $this->redirect_uri =  'http://' . $_SERVER['HTTP_HOST'] . '/callback';
 
         $this->sdk = new Auth0($this->configuration());
