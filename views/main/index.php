@@ -30,16 +30,15 @@
             <div class="clr"></div>
             <div class="menu">
                 <ul>
-                    <li><a href="index.html" class="active"><span>Home</span></a></li>
-                    <li><a href="services.html"><span>Services</span></a></li>
-                    <li><a href="about.html"><span>About Us</span></a></li>
-                    <li><a href="contact.html"><span>Contact Us</span></a></li>
+                    <li><a href="/" class="active"><span>Home</span></a></li>
+                    <li><a href="services.html"><span>Populates</span></a></li>
+                    <li><a href="about.html"><span>Ranks</span></a></li>
+                    <li><a href="contact.html"><span>Sales</span></a></li>
                 </ul>
             </div>
             <div class="clr"></div>
             <div class="logoimg">
-                <h2>You can find more of my free template designs at my website.<br />
-                    For premium commercial designs, you can check out<br />
+                <h2>You can buying any book in the my Book Store<br />
                     <span>MyWebsite.com.</span></h2>
             </div>
         </div>

@@ -21,4 +21,14 @@ class ProductsController extends Controller
         $views = "BookDetail";
         $this->render($views, $product);
     }
+
+    /**
+     * A method Getter of the ProductsController.
+     */
+    public function GetShoppingController()
+    {
+        $products = $_SESSION['ShoppingCart'];
+        $views = "ShoppingCart";
+        $this->render($views, $products);
+    }
 }

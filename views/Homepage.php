@@ -24,10 +24,9 @@ echo ' <div class="body">
                 <div class="bg"></div>
                 <ul>
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">TemplateInfo</a></li>
-                    <li><a href="#">Style Demo</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Archives</a></li>
+                    <li><a href="#">Category</a></li>
+                    <li><a href="ShoppingCart">Shopping Cart</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
                 <p>&nbsp;</p>
                 <h3>Sponsors</h3>
@@ -133,7 +132,7 @@ echo ' <div class="body">
                 <p><a href="#">12. 03. 10</a></p>
             </div>
             <div class="blok">
-                <h2>Services</h2>
+                <h2>Populate</h2>
                 <div class="bg"></div>
                 <ul>
                     <li><a href="#">consequat molestie</a></li>
