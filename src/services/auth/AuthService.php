@@ -44,7 +44,7 @@ class AuthService implements AuthServiceInterface
         $this->domain = 'dev-kyhdhfgu.us.auth0.com';
         $this->client_id = 'OX1MW0dPNSWwWFCNnscwABjsAXwSVhYN';
         $this->client_secret = 'ovv7mIvfOjbJ5c1TZg7mutOiBLCStUTfVmGOTzNu7QWhE70I-uDvk7vNZ7_Ybtgx';
-        $this->redirect_uri =  'http://' . $_SERVER['HTTP_HOST'] . '/callback';
+        $this->redirect_uri =  'https://' . $_SERVER['HTTP_HOST'] . '/callback';
 
         $this->sdk = new Auth0($this->configuration());
     }
