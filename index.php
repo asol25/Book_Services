@@ -20,7 +20,6 @@ $app = new Application(dirname(__DIR__));
 
 $app->router->get('/', (array)[HomeController::class, 'HomeController']);
 $app->router->get('/login', (array)[LoginController::class, 'LoginController']);
-$app->router->post('/login', (array)[LoginController::class, 'LoginController']);
 $app->router->get('/logout', (array)[LogoutController::class, 'LogoutController']);
 $app->router->get('/profile', (array)[ProfileController::class, 'ProfileController']);
 $app->router->get('/callback', (array)[CallbackController::class, 'CallbackController']);

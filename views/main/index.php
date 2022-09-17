@@ -34,6 +34,9 @@
                     <li><a href="services.html"><span>Populates</span></a></li>
                     <li><a href="about.html"><span>Ranks</span></a></li>
                     <li><a href="contact.html"><span>Sales</span></a></li>
+                    <li><a href="login"><span>Login</span></a></li>
+                    <li><a href="login"><span>Register</span></a></li>
+                    <li><a href="Profile"><span>Profile</span></a></li>
                 </ul>
             </div>
             <div class="clr"></div>
