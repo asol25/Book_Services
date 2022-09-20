@@ -8,6 +8,7 @@ use app\config\Database;
 use app\core\Router;
 use app\core\Request;
 use app\core\Response;
+use app\src\models\Category;
 use app\src\models\Product;
 use app\src\services\auth\AuthService;
 use app\src\services\CallAPI;
@@ -23,6 +24,7 @@ class Application
     public static Database $database;
     public static AuthService $auth;
     public static Product $product;
+    public static Category $category;
 
     public function __construct($rootPath)
     {
@@ -31,9 +33,10 @@ class Application
         $this->request = new Request();
         $this->response = new Response();
         $this->router = new Router($this->request);
-        self::$database = new Database("us-cdbr-east-06.cleardb.net", "b7bc8aa38cd488", "f7d98722", "heroku_90c2530383bb326");
+        self::$database = new Database("localhost", "root", "", "bookstore");
         self::$auth = new AuthService();
         self::$product = new Product();
+        self::$category = new Category();
     }
 
     /**

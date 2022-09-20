@@ -1,0 +1,26 @@
+SELECT * FROM `books`;
+SELECT * FROM `authors`;
+SELECT * FROM `genres`;
+SELECT * FROM `publishers`;
+
+
+SELECT * FROM books INNER JOIN book_genres ON book_genres.book_ID = books.book_id;
+SELECT * FROM books INNER JOIN publishers ON publishers.publisher_id = books.book_id;
+SELECT * FROM books INNER JOIN authors ON authors.AUTHOR_ID = books.book_id;
+
+
+INSERT INTO `books`(`book_id`, `title`, `subtitle`, `isbn`, `price`, `picture`, `url`, `author`, `publisher`, `book_genres`) 
+VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]','[value-8]','[value-9]','[value-10]')
+
+
+INSERT INTO `genres`(`genres_ID`, `name`) 
+VALUES ('[value-1]','[value-2]')
+
+INSERT INTO `publishers`(`publisher_id`, `name`) 
+VALUES ('[value-1]','[value-2]')
+
+
+INSERT INTO `authors`(`AUTHOR_ID`, `name`) 
+VALUES ('[value-1]','[value-2]')
+
+DELETE FROM `books` WHERE 0

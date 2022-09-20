@@ -1,6 +1,7 @@
 <?php
 
 namespace app\core;
+
 class Router
 {
     protected array $routes = [];
@@ -26,12 +27,12 @@ class Router
         return $this->routes['get'][$path] = $callback;
     }
 
-      /**
-      * Setter method of the POST Router.
-      * @param string $path is the path of the controller.
-      * @param array $callback is the Array container the path of the controller and namely of Method.
-      * @return array $routes is the Array containers the routes.
-      */
+    /**
+     * Setter method of the POST Router.
+     * @param string $path is the path of the controller.
+     * @param array $callback is the Array container the path of the controller and namely of Method.
+     * @return array $routes is the Array containers the routes.
+     */
     public function post(string $path, array $callback): array
     {
         return $this->routes['post'][$path] = $callback;
@@ -67,9 +68,10 @@ class Router
      * @param mixed $params the list params.
      * @return bool|string str_replace method to render the layout has been generated.
      */
-    public function renderViews(string $views,
-                                mixed $params): bool | string
-    {
+    public function renderViews(
+        string $views,
+        mixed $params
+    ): bool | string {
         $layoutContent = $this->renderMainLayout();
         $viewContent = $this->renderLayoutContent($views, $params);
 
@@ -80,14 +82,14 @@ class Router
      * A method to render the main layout content. There is nothing to do here.
      * @return string ob_get_clean() method to clean ob_start().
      */
-    public function renderMainLayout(): string  
+    public function renderMainLayout(): string
     {
         ob_start();
         include_once "views/main/index.php";
         return ob_get_clean();
     }
 
-     /**
+    /**
      * A method to render the layout content. There is nothing to do here.
      * @return string ob_get_clean() method to  delete current output buffer of the ob_start() method.
      */

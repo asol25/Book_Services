@@ -14,8 +14,6 @@ class ProfileController extends Controller
         $session = $auth->getCredentials();
         $authenticated = $session !== null;
 
-        echo "<pre>";
-        echo "</pre>";
         $template = [
             'name' => $authenticated ? $session->user['email'] : 'guest',
             'picture' => $authenticated ? $session->user['picture'] : null,

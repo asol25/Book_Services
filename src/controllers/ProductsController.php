@@ -5,6 +5,7 @@ namespace app\src\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\src\models\Cart;
 
 class ProductsController extends Controller
 {
@@ -27,8 +28,17 @@ class ProductsController extends Controller
      */
     public function GetShoppingController()
     {
-        $products = $_SESSION['ShoppingCart'];
+        $products = $_SESSION['Shopping'];
         $views = "ShoppingCart";
+        echo "<pre>";
+        print_r($products);
+        echo "</pre>";
         $this->render($views, $products);
+    }
+
+    public function AddCartShoppingController()
+    {
+        $shoppingCart = new Cart();
+        $shoppingCart->AddShoppingCart($_GET['book_id'], $_GET['selected']);
     }
 }

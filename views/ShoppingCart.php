@@ -2,15 +2,28 @@
 
 /** @var mixed $params getter in the router */
 $output_products = null;
-
-for ($index = 0; $index < $params; $index++) {
-   $output_products .= ' <div class="card">
-   <img src=' . $params[$index]->{'image'} . ' alt="Denim Jeans" style="width:100%">
-   <h1>' . $params[$index]->{'title'} . '</h1>
-   <p class="price">' . $params[$index]->{'price'} . '</p>
-   <input type="number" />
-   </div> ';
+foreach ($params as $key => $value) {
+    $discount = $params[$key]['discount'] != "" ? $params[$key]['discount'] . "%": "0";
+    $output_products .= '<tr class="table_category">
+   <td>' . $params[$key]['book_title'] . '</td>
+   <td>' . $params[$key]['book_price'] . '</td>
+   <td>' .  $discount  . '</td>
+   <td><input type="number" name="quantity" value=1></td>
+</tr>';
 }
 
+echo ' <div class="body">
+<div class="shopping_container">
+<table>
+<tr class="table_shopping">
+    <th>Title</th>
+    <th>Price</th>
+    <th>Discount</th>
+    <th>Quantity</th>
+</tr>
 
-echo "$output_products";
+' . $output_products . '
+
+</table>
+</div>
+</div>';

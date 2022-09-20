@@ -10,6 +10,7 @@
     <script type="text/javascript" src="views/js/cufon-yui.js"></script>
     <script type="text/javascript" src="views/js/georgiai.js"></script>
     <script type="text/javascript" src="views/js/cuf_run.js"></script>
+    <script type="text/javascript" src="views/js/main.js"></script>
 </head>
 <body>
 <div class="main">
@@ -31,11 +32,10 @@
             <div class="menu">
                 <ul>
                     <li><a href="/" class="active"><span>Home</span></a></li>
-                    <li><a href="services.html"><span>Populates</span></a></li>
-                    <li><a href="about.html"><span>Ranks</span></a></li>
-                    <li><a href="contact.html"><span>Sales</span></a></li>
+                    <li><a href="Populate"><span>Populate</span></a></li>
+                    <li><a href="Ranks"><span>FeedBack</span></a></li>
+                    <li><a href="Sales"><span>Sales</span></a></li>
                     <li><a href="login"><span>Login</span></a></li>
-                    <li><a href="login"><span>Register</span></a></li>
                     <li><a href="Profile"><span>Profile</span></a></li>
                 </ul>
             </div>

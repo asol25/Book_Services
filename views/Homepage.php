@@ -23,10 +23,10 @@ echo ' <div class="body">
                 <h3>Sidebar Menu</h3>
                 <div class="bg"></div>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Category</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="Category?taskOption=0">Category</a></li>
                     <li><a href="ShoppingCart">Shopping Cart</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="Contact">Contact</a></li>
                 </ul>
                 <p>&nbsp;</p>
                 <h3>Sponsors</h3>

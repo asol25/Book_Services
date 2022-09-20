@@ -14,7 +14,9 @@ interface IProduct
          */
 
     public function getAll();
+    public function getAllProductToCategory($category);
     public function getID($id);
+    public function getAllOrderBy(string $query);
     public function create();
     public function update($object, $id);
     public function remove($object, $id);

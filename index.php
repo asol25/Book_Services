@@ -21,15 +21,16 @@ $app = new Application(dirname(__DIR__));
 $app->router->get('/', (array)[HomeController::class, 'HomeController']);
 $app->router->get('/login', (array)[LoginController::class, 'LoginController']);
 $app->router->get('/logout', (array)[LogoutController::class, 'LogoutController']);
-$app->router->get('/profile', (array)[ProfileController::class, 'ProfileController']);
+$app->router->get('/Profile', (array)[ProfileController::class, 'ProfileController']);
 $app->router->get('/callback', (array)[CallbackController::class, 'CallbackController']);
 
 $app->router->get('/GetBook', (array)[ProductsController::class, 'GetBookController']);
 $app->router->get('/Category', (array)[CategoryController::class, 'CategoryController']);
-$app->router->get('/Populates', (array)[PopulatesController::class, 'PopulatesController']);
+$app->router->get('/Populate', (array)[PopulatesController::class, 'PopulatesController']);
 $app->router->get('/Ranks', (array)[RanksController::class, 'RanksController']);
 $app->router->get('/Sales', (array)[SalesController::class, 'SalesController']);
 $app->router->get('/ShoppingCart', (array)[ProductsController::class, 'GetShoppingController']);
+$app->router->get('/AddShoppingCart', (array)[ProductsController::class, 'AddCartShoppingController']);
 
 $app->router->get('/payment', (array)[PaymentController::class, 'PaymentController']);
 $app->router->get('/payment/callback', (array)[PaymentController::class, 'PaymentPageController']);
