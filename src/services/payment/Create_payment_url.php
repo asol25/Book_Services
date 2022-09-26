@@ -21,21 +21,44 @@ class Create_payment_url extends PaymentService implements IPaymentService
      * @param string|null $vnp_OrderType            Commodity code. Each commodity will belong to a group of lists specified by VNPAY.
      * @param string $vnp_TxnRef                    Reference code of the transaction at the merchant's system. This code is only used to distinguish.
      */
-    public function __construct(int $vnp_Amount,
-                                ?string $vnp_BankCode,
-                                string $vnp_Locale,
-                                string $vnp_OrderInfo,
-                                ?string $vnp_OrderType,
-                                string $vnp_TxnRef)
-    {
-        parent::__construct($vnp_Amount, $vnp_BankCode, $vnp_Locale, $vnp_OrderInfo, $vnp_OrderType, $vnp_TxnRef);
+    public function __construct(
+        int $vnp_Amount,
+        ?string $vnp_BankCode,
+        string $vnp_Locale,
+        string $vnp_OrderInfo,
+        ?string $vnp_OrderType,
+        string $vnp_TxnRef,
+        ?string $vnp_Bill_Fullname,
+        ?string $vnp_Bill_Address,
+        ?string $vnp_Bill_Email,
+        ?string $vnp_Bill_City,
+        ?string $vnp_Bill_Zip,
+        ?string $vnp_Bill_State,
+        ?string $vnp_Bill_NumberPhone,
+        ?string $vnp_Bill_NameCard,
+    ) {
+        parent::__construct($vnp_Amount,
+            $vnp_BankCode,
+            $vnp_Locale,
+            $vnp_OrderInfo,
+            $vnp_OrderType,
+            $vnp_TxnRef,
+            $vnp_Bill_Fullname,
+            $vnp_Bill_Address,
+            $vnp_Bill_Email,
+            $vnp_Bill_City,
+            $vnp_Bill_Zip,
+            $vnp_Bill_State,
+            $vnp_Bill_NumberPhone,
+            $vnp_Bill_NameCard,
+        );
     }
 
     /**
      * Contact parameters to the URL.
      * @return string the URL to request system of the VnPay.
      */
-    private function concatString() : string
+    private function concatString(): string
     {
         $input = array(
             "vnp_Version" => $this->getVnpVersion(),
@@ -51,6 +74,13 @@ class Create_payment_url extends PaymentService implements IPaymentService
             "vnp_ReturnUrl" => $this->getVnpReturnUrl(),
             "vnp_ExpireDate" => $this->getVnpExpire(),
             "vnp_TxnRef" => $this->getVnpTxnRef(),
+            // "vpn_Bill_Fullname" => $this->getVnpBillFullname(),
+            // "vnp_Bill_NumberPhone" => $this->getVnpBillNumberPhone(),
+            // "vnp_Bill_NameCard" => $this->getVnpBillNameCard(),
+            // "vnp_Bill_State" => $this->getVnpBillState(),
+            // "vnp_Bill_Zip" => $this->getVnpBillZip(),
+            // "vnp_Bill_Email" => $this->getVnpBillEmail(),
+            // "vnp_Bill_Address" => $this->getVnpBillAddress(),
         );
 
         ksort($input);
@@ -72,6 +102,7 @@ class Create_payment_url extends PaymentService implements IPaymentService
         $vnpSecureHash =  hash_hmac("sha512", $hashData, $this->getVnpSecureHash());
         $this->URL .= 'vnp_SecureHash=' . $vnpSecureHash;
 
+        // print_r($this->URL);
         return $this->URL;
     }
 
@@ -80,5 +111,4 @@ class Create_payment_url extends PaymentService implements IPaymentService
         // TODO: Implement requestPayment() method.
         header('Location: ' . $this->concatString());
     }
-
 }

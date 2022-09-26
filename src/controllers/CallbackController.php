@@ -15,13 +15,5 @@ class CallbackController extends Controller
     {
         $auth = Application::$auth;
         $auth->callback();
-        unset($_SESSION['auth']);
-    }
-
-    public function addController()
-    {
-        $database = $_SESSION['database'];
-        $database->get("add", [OrderSQL::class, "addCart"]);
-        $database->execute();
     }
 }

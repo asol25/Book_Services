@@ -44,7 +44,7 @@ class AuthService implements AuthServiceInterface
         $this->domain = 'dev-kyhdhfgu.us.auth0.com';
         $this->client_id = 'OX1MW0dPNSWwWFCNnscwABjsAXwSVhYN';
         $this->client_secret = 'ovv7mIvfOjbJ5c1TZg7mutOiBLCStUTfVmGOTzNu7QWhE70I-uDvk7vNZ7_Ybtgx';
-        $this->redirect_uri =  'https://' . $_SERVER['HTTP_HOST'] . '/callback';
+        $this->redirect_uri =  'http://' . $_SERVER['HTTP_HOST'] . '/callback';
 
         $this->sdk = new Auth0($this->configuration());
     }
@@ -95,7 +95,8 @@ class AuthService implements AuthServiceInterface
         // TODO: Implement logout() method.
         try {
             if (isset($this->sdk))
-                header(sprintf('Location: %s', $this->sdk->logout()));
+                $this->sdk->clear();
+                header(sprintf('Location: /',));
         }
         catch (ConfigurationException $e) {
             echo "<pre>";
@@ -121,7 +122,7 @@ class AuthService implements AuthServiceInterface
         // The end user will be returned with ?state and ?code values in their request, when successful.
         if ($hasAuthenticated) {
             try {
-                var_dump($_GET);
+                print_r($_GET);
                 $this->sdk->exchange();
             } catch (\Throwable $th) {
                 printf('Unable to complete authentication: %s', $th->getMessage());

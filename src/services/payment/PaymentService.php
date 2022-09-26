@@ -2,12 +2,13 @@
 
 
 namespace app\src\services\payment;
+
 error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 class PaymentService
 {
     //DO_NOT_EDIT_BELOW_THIS_LINE
-    
+
     /**
      * @var Create_payment_url of the Payment Services.
      */
@@ -45,7 +46,7 @@ class PaymentService
      */
     protected string $vnp_CreateDate;
 
-     /**
+    /**
      * @var string Is the transaction time in the format yyyyMMddHHmmss(Time zone GMT+7)Example: 20170829103111.
      */
     protected string $vnp_Expire;
@@ -59,7 +60,7 @@ class PaymentService
      * @var string The IP address of the client making the transaction.
      */
     protected string $vnp_IpAddr;
-    
+
     /**
      * @var string Display interface language. Currently support Vietnamese (vn), English (en).
      */
@@ -102,11 +103,6 @@ class PaymentService
     protected string $vnp_Inv_Email;
 
     /**
-     * @var string The address of the customer.
-     */
-    protected string $vnp_Bill_Address;
-
-    /**
      * @var string The number phone of the customer.
      */
     protected string $vnp_Inv_Phone;
@@ -115,6 +111,18 @@ class PaymentService
      * @var string The Tax code country of the customer.
      */
     protected string $vnp_Inv_Taxcode;
+
+    // EXTRA INFORMATION
+
+    public ?string $vnp_Bill_Fullname;
+    public ?string $vnp_Bill_Address;
+    public ?string $vnp_Bill_Email;
+    public ?string $vnp_Bill_City;
+    public ?string $vnp_Bill_Zip;
+    public ?string $vnp_Bill_State;
+    public ?string $vnp_Bill_NameCard;
+    public ?string $vnp_Bill_NumberPhone;
+
     /**
      * PaymentService constructor have seven parameter.
      * @param int $vnp_Amount                       Payment amount
@@ -124,13 +132,22 @@ class PaymentService
      * @param string|null $vnp_OrderType            Commodity code. Each commodity will belong to a group of lists specified by VNPAY.
      * @param string $vnp_TxnRef                    Reference code of the transaction at the merchant's system. This code is only used to distinguish.
      */
-    public function __construct(int $vnp_Amount,
-                                ?string $vnp_BankCode,
-                                string $vnp_Locale,
-                                string $vnp_OrderInfo,
-                                ?string $vnp_OrderType,
-                                string $vnp_TxnRef)
-    {
+    public function __construct(
+        int $vnp_Amount,
+        ?string $vnp_BankCode,
+        string $vnp_Locale,
+        string $vnp_OrderInfo,
+        ?string $vnp_OrderType,
+        string $vnp_TxnRef,
+        ?string $setVnpBillFullname,
+        ?string $setVnpBillAddress,
+        ?string $setVnpBillEmail,
+        ?string $setVnpBillCity,
+        ?string $setVnpBillZip,
+        ?string $setVnpBillState,
+        ?string $setVnpBillNameCard,
+        ?string $setVnpBillNumberPhone,
+    ) {
         $this->vnp_Version = "2.1.0";
         $this->vnp_TmnCode = "ZI3R0K6W";
         $this->vnp_Command = "pay";
@@ -148,6 +165,166 @@ class PaymentService
         $this->vnp_OrderInfo = $vnp_OrderInfo;
         $this->vnp_OrderType = $vnp_OrderType;
         $this->vnp_TxnRef = $vnp_TxnRef;
+        $this->setVnpBillFullname($setVnpBillFullname);
+        $this->setVnpBillAddress($setVnpBillAddress);
+        $this->setVnpBillEmail($setVnpBillEmail);
+        $this->setVnpBillCity($setVnpBillCity);
+        $this->setVnpBillZip($setVnpBillZip);
+        $this->setVnpBillState($setVnpBillState);
+        $this->setVnpBillNameCard($setVnpBillNameCard);
+        $this->setVnpBillNumberPhone($setVnpBillNumberPhone);
+    }
+
+    /**
+     * @param string|null $vnp_Bill_Fullname
+     */
+    public function setVnpBillFullname(?string $vnp_Bill_Fullname): void
+    {
+        $this->vnp_Bill_Fullname = $vnp_Bill_Fullname;
+    }
+
+    /**
+     * @param string|null $vnp_Bill_Address
+     */
+    public function setVnpBillAddress(?string $vnp_Bill_Address): void
+    {
+        $this->vnp_Bill_Address = $vnp_Bill_Address;
+    }
+
+    /**
+     * @param string|null $vnp_Bill_Email
+     */
+    public function setVnpBillEmail(?string $vnp_Bill_Email): void
+    {
+        $this->vnp_Bill_Email = $vnp_Bill_Email;
+    }
+
+    /**
+     * @param string|null $vnp_Bill_City
+     */
+    public function setVnpBillCity(?string $vnp_Bill_City): void
+    {
+        $this->vnp_Bill_City = $vnp_Bill_City;
+    }
+
+    /**
+     * @param string|null $vnp_Bill_Zip
+     */
+    public function setVnpBillZip(?string $vnp_Bill_Zip): void
+    {
+        $this->vnp_Bill_Zip = $vnp_Bill_Zip;
+    }
+
+    /**
+     * @param string|null $vnp_Bill_State
+     */
+    public function setVnpBillState(?string $vnp_Bill_State): void
+    {
+        $this->vnp_Bill_State = $vnp_Bill_State;
+    }
+
+    /**
+     * @param string|null $vnp_Bill_NameCard
+     */
+    public function setVnpBillNameCard(?string $vnp_Bill_NameCard): void
+    {
+        $this->vnp_Bill_NameCard = $vnp_Bill_NameCard;
+    }
+
+    /**
+     * @param string|null $vnp_Bill_NumberPhone
+     */
+    public function setVnpBillNumberPhone(?string $vnp_Bill_NumberPhone): void
+    {
+        $this->vnp_Bill_NumberPhone = $vnp_Bill_NumberPhone;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVnpInvEmail(): string
+    {
+        return $this->vnp_Inv_Email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVnpInvPhone(): string
+    {
+        return $this->vnp_Inv_Phone;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVnpInvTaxcode(): string
+    {
+        return $this->vnp_Inv_Taxcode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVnpBillFullname(): string
+    {
+        return $this->vnp_Bill_Fullname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVnpBillAddress(): string
+    {
+        return $this->vnp_Bill_Address;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVnpBillEmail(): string
+    {
+        return $this->vnp_Bill_Email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVnpBillCity(): string
+    {
+        return $this->vnp_Bill_City;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVnpBillZip(): string
+    {
+        return $this->vnp_Bill_Zip;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVnpBillState(): string
+    {
+        return $this->vnp_Bill_State;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVnpBillNameCard(): string
+    {
+        return $this->vnp_Bill_NameCard;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVnpBillNumberPhone(): string
+    {
+        return $this->vnp_Bill_NumberPhone;
     }
 
 
@@ -347,7 +524,7 @@ class PaymentService
      */
     public function setVnpExpire(): void
     {
-        $formatDate =  date('YmdHis',strtotime('+15 minutes',strtotime($this->vnp_CreateDate)));;
+        $formatDate =  date('YmdHis', strtotime('+15 minutes', strtotime($this->vnp_CreateDate)));;
 
         $this->vnp_Expire = $formatDate;
     }

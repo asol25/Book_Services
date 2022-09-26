@@ -19,9 +19,8 @@ class Cart
         $product = Application::$product;
         $product = $product->getID($id);
 
-        if (!isset($_SESSION['Shopping'])) {
+        if (!isset($_SESSION['Shopping']))
             $_SESSION['Shopping'] = array();
-        }
 
         if (isset($product)) {
             $product = $product->fetch();

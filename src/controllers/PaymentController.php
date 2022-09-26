@@ -24,7 +24,15 @@ class PaymentController extends Controller
                 "vn",
                 "Noi dung thanh toan",
             "topup",
-                20220905160836);
+                20220905160836,
+null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,);
             $paymentService->requestPayment();
         }
         catch (\Exception $exception) {
