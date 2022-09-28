@@ -22,8 +22,7 @@ class ProfileController extends Controller
             'auth:text' => $authenticated ? 'out' : 'in',
         ];
 
-        printf('<p>Welcome, %s.</p>', $template['name']);
-        printf('<p><pre>%s</pre></p>', $template['session']);
-        printf('<p><a href="/%s">Log %s</a></p>', $template['auth:route'], $template['auth:text']);
+        $views = "Profile";
+        $this->render($views, ["template" => $template]);
     }
 }

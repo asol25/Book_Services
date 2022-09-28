@@ -1,3 +1,10 @@
+<?php
+
+echo "<pre>";
+print_r($_GET);
+echo "</pre>";
+echo '
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,19 +41,6 @@
                         <a class="dropdown-item" href="profile">Profile</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Category
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Coding</a>
-                        <a class="dropdown-item" href="#">Programing</a>
-                        <a class="dropdown-item" href="#">Anime</a>
-                        <!-- <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a> -->
-                    </div>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#">Shopping Cart</a>
                 </li>
@@ -59,9 +53,10 @@
     </nav>
 
     <main>
-        {{content}}
+    {{content}}
     </main>
 
 </body>
 
-</html>
+</html>';
+?>

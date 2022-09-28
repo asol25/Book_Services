@@ -24,11 +24,10 @@ $app->router->get('/logout', (array)[LogoutController::class, 'LogoutController'
 $app->router->get('/profile', (array)[ProfileController::class, 'ProfileController']);
 $app->router->get('/callback', (array)[CallbackController::class, 'CallbackController']);
 
-$app->router->get('/GetBook', (array)[ProductsController::class, 'GetBookController']);
 $app->router->get('/Category', (array)[CategoryController::class, 'CategoryController']);
 $app->router->get('/Populate', (array)[PopulatesController::class, 'PopulatesController']);
 $app->router->get('/Ranks', (array)[RanksController::class, 'RanksController']);
-$app->router->get('/Sales', (array)[SalesController::class, 'SalesController']);
+$app->router->get('/Sale', (array)[SalesController::class, 'SalesController']);
 $app->router->get('/ShoppingCart', (array)[ProductsController::class, 'GetShoppingController']);
 $app->router->post('/Search', (array)[ProductsController::class, 'SearchController']);
 $app->router->get('/AddShoppingCart', (array)[ProductsController::class, 'AddCartShoppingController']);

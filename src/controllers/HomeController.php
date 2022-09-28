@@ -12,9 +12,10 @@ class HomeController extends Controller
     public function HomeController()
     {  
         $views = "Homepage";
-        $products = Application::$product;
-        $products = $products->getAll();
-        $this->render($views,  $products);
+        $dao = Application::$product;
+        $products = $dao->getAll();
+        $topSale = $dao->getAllOrderBy("ORDER BY `books`.`discount` DESC");
+        $topReviews = $dao->getAllRank();
+        $this->render($views,  ['products' => $products, 'topSale' => $topSale, 'topReviews' => $topReviews]);
     }
-
 }

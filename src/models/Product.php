@@ -16,7 +16,7 @@ class Product implements IProduct
     public function getAllOrderBy(string $query): bool|\PDOStatement
     {
         // TODO: Implement getAllPopulate() method.
-        $strSQL = "SELECT books.book_id AS `book_id`, title, subtitle, price, picture, url, authors.name AS `authors_name`, publishers.name AS `publisher_name`, discount 
+        $strSQL = "SELECT books.book_id AS `book_id`, title, subtitle, price, picture, authors.name AS `authors_name`, publishers.name AS `publisher_name`, discount 
                             FROM (((books INNER JOIN authors ON books.author = authors.AUTHOR_ID) 
                                 INNER JOIN publishers ON books.publisher = publishers.publisher_id) 
                                 INNER JOIN book_genres ON book_genres.book_ID = books.book_id) 
@@ -28,17 +28,21 @@ class Product implements IProduct
      * Getter method for the products.
      * @return bool|\PDOStatement Object container information for the products.
      */
+    public function getCountColumn($query): bool|\PDOStatement
+    {
+        $strSQL = "SELECT books.book_id, books.title, books.subtitle, books.price, books.picture 
+        FROM `books` INNER JOIN review ON review.book_id = books.book_id 
+        GROUP BY review.book_id, books.book_id {$query};";
+        return Application::$database->getMySQL()->getIsConnection()->query($strSQL);
+    }
+
+    /**
+     * Getter method for the products.
+     * @return bool|\PDOStatement Object container information for the products.
+     */
     public function getAllRank(): bool|\PDOStatement
     {
-        $strSQL = "SELECT books.book_id AS `book_id`,
-                    title, subtitle, price, picture, url,
-                    authors.name AS `authors_name`,
-                    publishers.name AS `publisher_name`,
-                    discount, COUNT(books.review) as `feeback` 
-                        FROM (((books INNER JOIN authors ON books.author = authors.AUTHOR_ID) 
-                            INNER JOIN publishers ON books.publisher = publishers.publisher_id) 
-                            INNER JOIN book_genres ON book_genres.book_ID = books.book_id) 
-                            GROUP BY books.review;";
+        $strSQL = "SELECT book_id, title, populate as 'count' FROM `books` ORDER BY `books`.`populate` DESC LIMIT 5;s";
         return Application::$database->getMySQL()->getIsConnection()->query($strSQL);
     }
 
@@ -79,15 +83,15 @@ class Product implements IProduct
      * Getter method for the Category.
      * @return bool|\PDOStatement Object container information for the products.
      */
-    public function getAllProductToCategory($category): bool|\PDOStatement
+    public function getAllProductToCategory($query): bool|\PDOStatement
     {
         // TODO: Implement getAllProductToCategory() method.
         try {
-            $strSQL = 'SELECT books.book_id AS "book_id", title, subtitle, price, picture, url, authors.name AS "authors_name", publishers.name AS "publisher_name", discount 
-                            FROM (((books INNER JOIN authors ON books.author = authors.AUTHOR_ID) 
-                                INNER JOIN publishers ON books.publisher = publishers.publisher_id) 
-                                INNER JOIN book_genres ON book_genres.book_ID = books.book_id) 
-                                    WHERE book_genres.genres_ID = ' . $category . ';';
+            $strSQL = "SELECT DISTINCT books.book_id, books.title, books.subtitle, books.price, books.picture 
+            FROM `books` 
+            INNER JOIN review ON review.book_id = books.book_id
+            INNER JOIN book_genres ON book_genres.book_ID = books.book_id 
+                        {$query}";
 
             return Application::$database->getMySQL()->getIsConnection()->query($strSQL);
         } catch (ArgumentException $exception) {
@@ -113,7 +117,7 @@ class Product implements IProduct
             print_r($exception);
         }
     }
-    
+
     public function create()
     {
         // TODO: Implement create() method.
