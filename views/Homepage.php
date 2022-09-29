@@ -26,36 +26,42 @@ for ($i = 0; $i < sizeof($params['products']); $i++) {
     ';
 }
 
-echo '
-<body>
-<div class="container mt-3">
-<div class="row">
-    <div class="col-3 mr-3">
-        <div class="card mb-3" style="width: 18rem;">
-         <div class="card-header">
-         <a href="Sale">Giảm Giá Sập Sàn</a>
-         </div>
-           <ul class="list-group list-group-flush">
-           ' . $topSale . '
-            </ul>
-        </div>
+// echo '
+// <body>
+// <div class="container mt-3">
+// <div class="row">
+//     <div class="col-3 mr-3">
+//         <div class="card mb-3" style="width: 18rem;">
+//          <div class="card-header">
+//          <a href="Sale">Giảm Giá Sập Sàn</a>
+//          </div>
+//            <ul class="list-group list-group-flush">
+//            ' . $topSale . '
+//             </ul>
+//         </div>
 
-        <div class="card" style="width: 18rem;">
-            <div class="card-header">
-                <a href="Views">Xem nhiều nhất</a>
-            </div>
-            <ul class="list-group list-group-flush">
-              ' . $topReviews . '
-            </ul>
-        </div>
-    </div>
+//         <div class="card" style="width: 18rem;">
+//             <div class="card-header">
+//                 <a href="Views">Xem nhiều nhất</a>
+//             </div>
+//             <ul class="list-group list-group-flush">
+//               ' . $topReviews . '
+//             </ul>
+//         </div>
+//     </div>
 
-    <div class="col">
-    <div class="card-columns">
-       ' . $output_products . '
-    </div>
-    </div>
-</div>
-</div>
+//     <div class="col">
+//     <div class="card-columns">
+//        ' . $output_products . '
+//     </div>
+//     </div>
+// </div>
+// </div>
     
-</body>';
+// </body>';
+
+?>
+
+<div class="container">
+    <div class="banner"></div>
+</div>

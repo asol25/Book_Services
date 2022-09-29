@@ -11,8 +11,7 @@ use app\core\Response;
 use app\src\models\Category;
 use app\src\models\Product;
 use app\src\services\auth\AuthService;
-use app\src\services\CallAPI;
-use Auth0\SDK\Auth0;
+
 
 class Application
 {
