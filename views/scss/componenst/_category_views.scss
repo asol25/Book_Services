@@ -1,0 +1,53 @@
+.category_views {
+    width: 252px;
+    margin: 45px 25px;
+    .search {
+        position: relative;
+
+        &_input {
+            width: 208px;
+            height: 31px;
+            background: $color-text-input-small;
+
+            outline: none;
+            border: none;
+            border-radius: 5px;
+
+            text-indent: 49px;
+            transition: 0.5s;
+        }
+
+        &_icon {
+            position: absolute;
+            top: 50%;
+            left: 0.5em;
+            transform: translateY(-50%);
+        }
+
+        &_input:focus {
+            text-indent: 25px;
+        }
+    }
+
+    .category_container {
+        padding: 0.5em 1em;
+        color: $color-white;
+
+        &_title {
+            font-size: $input-text-size-small;
+            font-weight: $w700;
+            line-height: 14px;
+        }
+
+        .checkbox {
+            input {
+                border: 2px solid black;
+            }
+            label {
+                font-weight: $w400;
+                font-size: $normal-size;
+                line-height: 31px;
+            }
+        }
+    }
+}

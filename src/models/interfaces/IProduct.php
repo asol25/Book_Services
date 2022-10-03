@@ -12,10 +12,6 @@ interface IProduct
      * made in any of these files including the addition or removal of libraries.
      *
      */
-    public function getAll();
-    public function getID($id);
-    public function getAllOrderBy(string $query);
-    public function create();
-    public function update($object, $id);
-    public function remove($object, $id);
+    public function getProductsPopulate();
+    public function getProductsToCategory(array $options);
 }

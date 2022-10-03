@@ -5,131 +5,29 @@ namespace app\src\models;
 
 use app\core\Application;
 use app\src\models\interfaces\IProduct;
-use Auth0\SDK\Exception\ArgumentException;
+use PDO;
 
 class Product implements IProduct
 {
-    /**
-     * Getter method for the products.
-     * @return bool|\PDOStatement Object container information for the products.
-     */
-    public function getAllOrderBy(string $query): bool|\PDOStatement
+    public function getProductsPopulate(): bool|\PDOStatement
     {
-        // TODO: Implement getAllPopulate() method.
-        $strSQL = "SELECT books.book_id AS `book_id`, title, subtitle, price, picture, authors.name AS `authors_name`, publishers.name AS `publisher_name`, discount 
-                            FROM (((books INNER JOIN authors ON books.author = authors.AUTHOR_ID) 
-                                INNER JOIN publishers ON books.publisher = publishers.publisher_id) 
-                                INNER JOIN book_genres ON book_genres.book_ID = books.book_id) 
-                                       $query";
+        // TODO: Implement getProductsPopulate() method.
+        $strSQL =  "SELECT books.book_id, books.title, books.subtitle, books.picture\n"
+            . "FROM `books`  \n"
+            . "ORDER BY `books`.`populate` DESC;";
+
         return Application::$database->getMySQL()->getIsConnection()->query($strSQL);
     }
 
-    /**
-     * Getter method for the products.
-     * @return bool|\PDOStatement Object container information for the products.
-     */
-    public function getCountColumn($query): bool|\PDOStatement
+    public function getProductsToCategory(array $options): bool|\PDOStatement
     {
-        $strSQL = "SELECT books.book_id, books.title, books.subtitle, books.price, books.picture 
-        FROM `books` INNER JOIN review ON review.book_id = books.book_id 
-        GROUP BY review.book_id, books.book_id {$query};";
+        // TODO: Implement getProductsPopulate() method.
+        $strSQL = "SELECT books.book_id, books.picture FROM books\n"
+
+            . "WHERE EXISTS (SELECT book_genres.book_ID FROM book_genres\n"
+
+            . "WHERE book_genres.genres_ID = {$options['category_ID']});";
+
         return Application::$database->getMySQL()->getIsConnection()->query($strSQL);
-    }
-
-    /**
-     * Getter method for the products.
-     * @return bool|\PDOStatement Object container information for the products.
-     */
-    public function getAllRank(): bool|\PDOStatement
-    {
-        $strSQL = "SELECT book_id, title, populate as 'count' FROM `books` ORDER BY `books`.`populate` DESC LIMIT 5;s";
-        return Application::$database->getMySQL()->getIsConnection()->query($strSQL);
-    }
-
-    public function __construct()
-    {
-    }
-
-    /**
-     * Getter method for the products.
-     * @return array|string|object Object container information for the products.
-     */
-    public function getAll(): array|string|object
-    {
-        // TODO: Implement getAll() method
-        if (empty($_SESSION['products'])) {
-            $response = file_get_contents('https://api.itbook.store/1.0/search/mongodb');
-            $response = json_decode($response);
-            $_SESSION['products'] = $response->{"books"};
-
-            return $_SESSION['products'];
-        }
-
-        return  $_SESSION['products'];
-    }
-
-    /**
-     * Getter method for the products depend on ID.
-     * @return bool|\PDOStatement Object container information for the products.
-     */
-    public function getID($id): bool|\PDOStatement
-    {
-        // TODO: Implement getID() method.
-        $strSQL = "SELECT * FROM `books` WHERE book_id = $id";
-        return Application::$database->getMySQL()->getIsConnection()->query($strSQL);
-    }
-
-    /**
-     * Getter method for the Category.
-     * @return bool|\PDOStatement Object container information for the products.
-     */
-    public function getAllProductToCategory($query): bool|\PDOStatement
-    {
-        // TODO: Implement getAllProductToCategory() method.
-        try {
-            $strSQL = "SELECT DISTINCT books.book_id, books.title, books.subtitle, books.price, books.picture 
-            FROM `books` 
-            INNER JOIN review ON review.book_id = books.book_id
-            INNER JOIN book_genres ON book_genres.book_ID = books.book_id 
-                        {$query}";
-
-            return Application::$database->getMySQL()->getIsConnection()->query($strSQL);
-        } catch (ArgumentException $exception) {
-            print_r($exception);
-        }
-    }
-
-    /**
-     * Getter method for the Search depend on Name product.
-     * @return bool|\PDOStatement Object container information for the products.
-     */
-    public function getSearchName($query): bool|\PDOStatement
-    {
-        try {
-            $strSQL = 'SELECT books.book_id AS "book_id", title, subtitle, price, picture, url, authors.name AS "authors_name", publishers.name AS "publisher_name", discount 
-                            FROM (((books INNER JOIN authors ON books.author = authors.AUTHOR_ID) 
-                                INNER JOIN publishers ON books.publisher = publishers.publisher_id) 
-                                INNER JOIN book_genres ON book_genres.book_ID = books.book_id) 
-                                    WHERE books.title LIKE "%' . $query . '%"';
-
-            return Application::$database->getMySQL()->getIsConnection()->query($strSQL);
-        } catch (ArgumentException $exception) {
-            print_r($exception);
-        }
-    }
-
-    public function create()
-    {
-        // TODO: Implement create() method.
-    }
-
-    public function update($object, $id)
-    {
-        // TODO: Implement update() method.
-    }
-
-    public function remove($object, $id)
-    {
-        // TODO: Implement remove() method.
     }
 }

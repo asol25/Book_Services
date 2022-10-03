@@ -1,0 +1,47 @@
+// color
+$base-color: #242121;
+$color-white: #FFFFFF;
+$color-text: #D2D2D2;
+$color-text-input: #808080;
+$color-text-input-small: #292929;
+$color-select: #808080;
+$fill-icon: #E7E2E2;
+
+// size text
+
+$title-size: 35px;
+$nav-size: 20px;
+$input-text-size: 17px;
+$button-size: 17px;
+$normal-size: 16px;
+$input-text-size-small: 12px;
+$text-small: 12px;
+
+
+$w700: 700;
+$w600: 600;
+$w500: 500;
+$w400: 400;
+$w300: 300;
+
+:root {
+    font-family: "Roboto";
+    font-style: normal;
+}
+body {
+    background-color: $base-color;
+}
+
+.flex {
+    display: flex;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+@import "./header/header";
+@import "./layout/layout";
+@import "./footer/footer";

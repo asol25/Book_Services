@@ -34,6 +34,5 @@ $app->router->get('/AddShoppingCart', (array)[ProductsController::class, 'AddCar
 
 $app->router->get('/payment', (array)[PaymentController::class, 'PaymentController']);
 $app->router->get('/payment/callback', (array)[PaymentController::class, 'PaymentPageController']);
-$app->router->post('/payment/callback', (array)[PaymentController::class, 'PaymentPageController']);
 
 $app->run();

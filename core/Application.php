@@ -19,7 +19,7 @@ class Application
     public static Application $app;
     public Router $router;
     public Request $request;
-    public Response $response;
+    public static Response $response;
     public static Database $database;
     public static AuthService $auth;
     public static Product $product;
@@ -30,7 +30,7 @@ class Application
         self::$app = $this;
         self::$ROOT_PATH = $rootPath;
         $this->request = new Request();
-        $this->response = new Response();
+        self::$response = new Response();
         $this->router = new Router($this->request);
         self::$database = new Database("localhost", "root", "", "bookstore");
         self::$auth = new AuthService();
