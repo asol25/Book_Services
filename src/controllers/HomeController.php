@@ -12,7 +12,6 @@ class HomeController extends Controller
     public function HomeController()
     {  
         $views = "HomePage";
-        $dao = Application::$product;
         $this->render($views,  null);
     }
 }

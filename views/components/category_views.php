@@ -78,7 +78,7 @@ echo '
             checkBoxNodes.forEach(element => {
                 element.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const params = "?category=" + e.target.dataset.id;
+                    const params = "?keyword=" + e.target.dataset.id;
                     window.location.href = window.location.origin + params;
                 })
             });

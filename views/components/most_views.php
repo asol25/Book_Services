@@ -6,7 +6,7 @@ $outputOfProductPopulated  = null;
 
 if ($data['code'] != 0) {
     while ($value = $data['message']->fetch()) {
-        $request = "products_detail?book_isb=" . $value['book_id'];
+        $request = "Detail_product?book_isb=" . $value['book_id'];
 
         $outputOfProductPopulated .= '
         <div class="most_views_block flex">

@@ -1,5 +1,8 @@
 .products_views {
+    position: relative;
+
     &_container {
+        margin-top: 50px;
         display: flex;
         align-items: center;
         flex-wrap: wrap;
@@ -17,6 +20,37 @@
                 width: 100%;
                 height: 100%;
                 display: block;
+            }
+        }
+
+        &_filter {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            h3 {
+                background-color: $color-text-input-small;
+                color: white;
+                padding: 10px 20px;
+            }
+            .select_filter_list {
+                display: none;
+                padding: 10px;
+            }
+
+            .select_filter_item {
+                padding-top: 10px;
+            }
+
+            .select_filter_link {
+                text-decoration: none;
+                color: white;
+            }
+
+            h3:hover {
+                .select_filter_list {
+                    display: block;
+                }
             }
         }
     }

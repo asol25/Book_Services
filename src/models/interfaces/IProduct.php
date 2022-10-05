@@ -14,5 +14,6 @@ interface IProduct
      */
     public function getProductsPopulate();
     public function getProducts();
+    public function getProduct($isb);
     public function getProductsToCategory(array $options);
 }

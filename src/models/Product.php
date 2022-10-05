@@ -30,10 +30,26 @@ class Product implements IProduct
     public function getProductsToCategory(array $options): bool|\PDOStatement
     {
         // TODO: Implement getProductsPopulate() method.
-        $strSQL = "SELECT books.book_id, books.picture FROM books\n"
-            . "WHERE EXISTS (SELECT book_genres.book_ID FROM book_genres\n"
-            . 'WHERE book_genres.genres_ID = '.$options['category_ID'].');';
+        $strSQL = 'SELECT books.book_id, books.picture FROM books'
 
+            . '	WHERE EXISTS (SELECT book_genres.book_ID FROM book_genres'
+
+            . ' WHERE book_genres.genres_ID = ' . $options['keyword'] . ')  ';
+
+        if (isset($options['query'])) {
+            # code...
+            $strSQL .= $options['query'];
+        }
         return Application::$database->getMySQL()->getIsConnection()->query($strSQL);
     }
+
+    public function getProduct($isb): bool|\PDOStatement
+    {
+        // TODO: Implement getProduct() method.
+        $strSQL =  "SELECT books.book_id, books.title, books.subtitle, books.price, books.picture 
+                    FROM `books` 
+                    WHERE books.book_id = $isb;";
+        return Application::$database->getMySQL()->getIsConnection()->query($strSQL);
+    }
+
 }
