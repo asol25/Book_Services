@@ -1,3 +1,58 @@
 .container {
     width: 100%;
 }
+
+.header {
+    background-color: $color-text-input-small;
+    align-items: center;
+    justify-content: space-around;
+    &_logo {
+        color: $color-white;
+        font-size: $title-size;
+    }
+
+    &_search {
+        position: relative;
+        color: $color-select;
+        input {
+            width: 678px;
+            height: 33px;
+            border-radius: 0.3em;
+            border: 0;
+            outline: none;
+            background-color: $color-text-input;
+            text-indent: 42px;
+            font-size: $button-size;
+        }
+
+        &_content {
+            position: absolute;
+            top: 50%;
+            left: 12px;
+            transform: translateY(-50%);
+        }
+    }
+
+    &_setting {
+        align-items: center;
+        justify-content: space-around;
+        gap: 40px;
+    }
+}
+
+.nav {
+    margin-bottom: 150px;
+    &_list {
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+    }
+
+    .nav_link {
+        font-weight: $w400;
+        font-size: $nav-size;
+        line-height: 23px;
+        color: $color-white;
+        text-decoration: none;
+    }
+}

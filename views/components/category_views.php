@@ -29,7 +29,7 @@ echo '
         <input type="text" class="search_input" placeholder="Search categories and...">
     </div>
     <div class="category_container">
-        <p class="category_container_title">Popular Categories</p>
+        <p class="category_container_title"><a href="/">Popular Categories</a></p>
         <form action="" method="get">
            ' . $outputOfCategory . '
         </form>
@@ -43,19 +43,38 @@ echo '
     const categoryViews = ((allProductsCheckedNode) => {
         const checkBoxNodes = document.querySelectorAll('.category_input');
 
-        window.onload = () => {
-            checkBoxNodes.forEach(element => {
-                element.removeAttribute('checked');
-                const findIndexOfString = window.location.search.includes(element.dataset.id);
-                if (findIndexOfString) {
-                    element.checked = findIndexOfString;
-                }
-
-
+        const handleEventSearch = () => {
+            const searchNode = document.querySelector('.search_input');
+            const iconNode = document.querySelector('.search_icon');
+            searchNode.addEventListener('focus', (e) => {
+                console.log(e);
+                e.preventDefault();
+                iconNode.style.display = 'none';
             });
-        };
 
+            searchNode.addEventListener('blur', (e) => {
+                console.log(e);
+                e.preventDefault();
+                iconNode.style.display = 'block';
+            });
+        }
+
+        /**
+         * A method handler Checked field CheckBox.
+         * When window onload set checked to non-checked.
+         * Alter click handler set to checked.
+         */
         handlerEvent = () => {
+            window.onload = () => {
+                checkBoxNodes.forEach(element => {
+                    element.removeAttribute('checked');
+                    const findIndexOfString = window.location.search.includes(element.dataset.id);
+                    if (findIndexOfString) {
+                        element.checked = findIndexOfString;
+                    }
+                });
+            };
+
             checkBoxNodes.forEach(element => {
                 element.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -64,7 +83,8 @@ echo '
                 })
             });
         };
-        
+
         handlerEvent();
+        handleEventSearch();
     })();
 </script>

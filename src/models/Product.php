@@ -19,14 +19,20 @@ class Product implements IProduct
         return Application::$database->getMySQL()->getIsConnection()->query($strSQL);
     }
 
+    public function getProducts(): bool|\PDOStatement
+    {
+        // TODO: Implement getProducts() method.
+        $strSQL = "SELECT books.book_id, books.picture FROM books\n";
+        return Application::$database->getMySQL()->getIsConnection()->query($strSQL);
+    }
+
+
     public function getProductsToCategory(array $options): bool|\PDOStatement
     {
         // TODO: Implement getProductsPopulate() method.
         $strSQL = "SELECT books.book_id, books.picture FROM books\n"
-
             . "WHERE EXISTS (SELECT book_genres.book_ID FROM book_genres\n"
-
-            . "WHERE book_genres.genres_ID = {$options['category_ID']});";
+            . 'WHERE book_genres.genres_ID = '.$options['category_ID'].');';
 
         return Application::$database->getMySQL()->getIsConnection()->query($strSQL);
     }

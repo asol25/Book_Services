@@ -45,28 +45,27 @@ class ProductsController extends Controller
     /**
      * Getter method for the Product Controller.
      * @return array Container information for products flowing ID category.
-     * @throws InvalidArgumentException if category_ID empty.
      */
-    #[ArrayShape(["code" => "int", "message" => "bool|\PDOStatement|string|ArgumentException"])] public function GetModuleProductsFlowCategory(): array
+    #[ArrayShape(["code" => "int", "message" => "bool|\PDOStatement|string"])] public function GetModuleProductsFlowCategory(): array
     {
+        $products = null;
         try {
-
-            if (empty($_GET['category']) && $_GET['category'] != 0) {
-                throw new InvalidArgumentException("Error ArgumentException Request", 1);
+            $isCheckedEmpty = empty($_GET['category']) && $_GET['category'] !== 0;
+            if ($isCheckedEmpty) {
+                $products = Application::$product->getProducts();
+            } else {
+                $options = [
+                    'category_ID' => $_GET['category'],
+                ];
+                $products = Application::$product->getProductsToCategory($options);
             }
-            $options = [
-                'category_ID' => $_GET['category'],
-            ];
 
-            $products = Application::$product->getProductsToCategory($options);
-
-            var_dump($products, "TOP");
             if ($products->rowCount()) {
                 $this->code = 1;
                 $this->message = $products->fetchAll();
             };
-        } catch (\InvalidArgumentException $exception) {
-            $this->message = $exception->getMessage();
+        } catch (\PDOException $exception) {
+            $this->message = $exception->getMessage();  
         } finally {
             return Application::$response->setReturnMessage($this->code, $this->message);
         }

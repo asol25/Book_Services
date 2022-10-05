@@ -4,14 +4,24 @@ use app\src\controllers\ProductsController;
 
 $dao = new ProductsController();
 $products = $dao->GetModuleProductsFlowCategory();
+$output_products = null;
+// echo "<pre>";
+// print_r($products);
+// echo "</pre>";
 
-print_r($products);
-?>
 
+if ($output_products['code'] !== 0) {
+    # code...
+    foreach ($products['message'] as $product) {
+        $output_products .= '
+        <div class="products_views_container_picture">
+        <img src="' . $product['picture'] . '" alt="" srcset="">
+    </div>';
+    }
+}
+echo '
 <section class="section products_views grid">
     <div class="products_views_container">
-        <div class="products_views_container_picture">
-            <img src="" alt="" srcset="">
-        </div>
+        ' . $output_products . '
     </div>
-</section>
+</section>';

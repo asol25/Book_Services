@@ -13,5 +13,6 @@ interface IProduct
      *
      */
     public function getProductsPopulate();
+    public function getProducts();
     public function getProductsToCategory(array $options);
 }

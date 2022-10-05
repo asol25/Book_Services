@@ -2,7 +2,7 @@
 $base-color: #242121;
 $color-white: #FFFFFF;
 $color-text: #D2D2D2;
-$color-text-input: #808080;
+$color-text-input: #373737;
 $color-text-input-small: #292929;
 $color-select: #808080;
 $fill-icon: #E7E2E2;
@@ -27,6 +27,7 @@ $w300: 300;
 :root {
     font-family: "Roboto";
     font-style: normal;
+    margin: 0 auto;
 }
 body {
     background-color: $base-color;
@@ -41,6 +42,33 @@ img {
     height: 100%;
     display: block;
 }
+
+.main_products_container {
+    display: flex;
+    gap: 116px;
+}
+
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	// border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	// border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+
 
 @import "./header/header";
 @import "./layout/layout";
