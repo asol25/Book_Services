@@ -10,11 +10,8 @@ use app\src\controllers\HomeController;
 use app\src\controllers\LoginController;
 use app\src\controllers\LogoutController;
 use app\src\controllers\PaymentController;
-use app\src\controllers\PopulatesController;
 use app\src\controllers\ProfileController;
-use app\src\controllers\ProductsController;
-use app\src\controllers\RanksController;
-use app\src\controllers\SalesController;
+use app\src\controllers\SearchController;
 
 
 $app = new Application(dirname(__DIR__));
@@ -27,8 +24,8 @@ $app->router->get('/callback', (array)[CallbackController::class, 'CallbackContr
 
 $app->router->get('/Category', (array)[CategoryController::class, 'CategoryController']);
 $app->router->get('/Detail_product', (array)[DetailProductController::class, 'DetailProductController']);
-//$app->router->get('/ShoppingCart', (array)[ShoppingController::class, 'ShoppingController']);
-$app->router->post('/Search', (array)[ProductsController::class, 'SearchController']);
+$app->router->get('/ShoppingCart', (array)[ShoppingController::class, 'ShoppingController']);
+$app->router->get('/Search', (array)[SearchController::class, 'SearchController']);
 
 $app->router->get('/payment', (array)[PaymentController::class, 'PaymentController']);
 $app->router->get('/payment/callback', (array)[PaymentController::class, 'PaymentPageController']);

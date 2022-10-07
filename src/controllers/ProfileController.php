@@ -22,7 +22,10 @@ class ProfileController extends Controller
             'auth:text' => $authenticated ? 'out' : 'in',
         ];
 
-        $views = "Profile";
+        echo "<pre>";
+        print_r($template['session']->{'accessToken'});
+        echo "</pre>";
+        $views = "ProfilePage";
         $this->render($views, ["template" => $template]);
     }
 }

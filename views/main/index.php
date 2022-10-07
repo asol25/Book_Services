@@ -1,10 +1,37 @@
 <?php
 
-// echo "<pre>";
+// echo '<pre>';
 // print_r($_GET);
-// echo "</pre>";
-?>
+// print_r($_SERVER);
+// echo '</pre>';
 
+use app\core\Application;
+
+$stateAccount = null;
+$auth = Application::$auth;
+$session = $auth->getCredentials();
+
+$authenticated = $session !== null;;
+if ($authenticated) {
+    # code...
+    $stateAccount = '
+    <div class="account_container">
+        <div class="dropdown">
+        <div class="profile-img">
+            <img src="'.$session->user['picture'] .'" />
+        </div>
+        <div class="dropdown-content">
+          <a href="profile">Profile</a>
+          <a href="ShoppingCart">Shopping</a>
+          <a href="logout">Logout</a>
+        </div>
+        </div>
+    </div>';
+} else {
+    $stateAccount = '<h2 class="login"><a href="login">Login</a></h2>';
+}
+
+echo '
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,41 +44,52 @@
     <link rel="stylesheet" href="views/scss/reset.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script>
+        function showResult(str) {
+            if (str.length == 0) {
+                document.getElementById("livesearch").innerHTML = "";
+                document.getElementById("livesearch").style.border = "0px";
+                return;
+            }
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState = 4 && this.status == 200) {
+                    console.log(this);
+                    document.getElementById("livesearch").innerHTML = this.responseText;
+                    document.getElementById("livesearch").style.border = "1px solid #A5ACB2";
+                }
+            }
+            xmlhttp.open("GET", "Search?searchKeyword=" + str, true);
+            xmlhttp.send();
+        }
+    </script>
 </head>
 
 <body>
     <div class="container">
         <header class="header flex">
             <div class="header_logo">
-                LOGO
+                <a href="/">LOGO</a>
             </div>
 
             <div class="header_search">
-                <input type="search" name="search" id="search" placeholder="Search for the book you want and read it now... Sherlock Holmes, Harry Pot...">
+                <input type="search" onkeyup="showResult(this.value)" name="search" id="search" placeholder="Search for the book you want and read it now... Sherlock Holmes, Harry Pot...">
+                <div id="livesearch">
+                    <ul class="live_search_list">
+
+                    </ul>
+                </div>
                 <div class="header_search_content flex">
                     <i class="ri-search-line header_search_content_icon"></i>
                 </div>
             </div>
 
             <div class="header_setting flex">
-                <img src="views/pictures/bx_bx-book-heart.svg" alt="">
-                <img src="views/pictures/fluent_premium-person-20-regular.svg" alt="">
-                <img src="views/pictures/ic_round-notifications-none.svg" alt="">
-                <img src="views/pictures/IMG20210528181544.svg" alt="">
+                '.$stateAccount.'
             </div>
         </header>
 
-        <nav class="nav">
-            <ul class="nav_list flex">
-                <li class="nav_item"><a href="" class="nav_link">Detective</a></li>
-                <li class="nav_item"><a href="" class="nav_link">Love</a></li>
-                <li class="nav_item"><a href="" class="nav_link">Novel</a></li>
-                <li class="nav_item"><a href="" class="nav_link">History</a></li>
-                <li class="nav_item"><a href="" class="nav_link">Science fiction</a></li>
-                <li class="nav_item"><a href="" class="nav_link">Fantastic</a></li>
-                <li class="nav_item"><a href="" class="nav_link">More</a></li>
-            </ul>
-        </nav>
         <main class="main-container gird">
             {{content}}
         </main>
@@ -59,4 +97,6 @@
     </div>
 </body>
 
+
 </html>
+';

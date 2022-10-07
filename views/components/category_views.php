@@ -10,7 +10,7 @@ if ($data['code'] != 0) {
         $name = $value['name'];
         $outputOfCategory .= '
         <div class="checkbox" data-id="' . $dateSet . '">
-        <input type="checkbox" class="category_input" id="' .   $name . '" name="' .   $name . '" data-id="' . $dateSet . '">
+        <input type="checkbox" class="category_input" id="' .   $name . '" name="' .   $name . '" data-id="keyword=' . $dateSet . '">
         <label for="' .   $name . '" data-id="1">' .   $name . '</label>
     </div>
     ';
@@ -78,7 +78,17 @@ echo '
             checkBoxNodes.forEach(element => {
                 element.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const params = "?keyword=" + e.target.dataset.id;
+
+                    if (!window.location.search.includes("keyword")) {
+                        const params = "?keyword=" + e.target.dataset.id;
+                        window.location.href = window.location.origin + params;
+                    }
+
+                    if (window.location.pathname) {
+                        const params = window.location.pathname + window.location.search + "&" + e.target.dataset.id;
+                        window.location.href = window.location.origin + params;
+                    }
+                    const params = "?" + e.target.dataset.id;
                     window.location.href = window.location.origin + params;
                 })
             });

@@ -12,9 +12,9 @@ class Product implements IProduct
     public function getProductsPopulate(): bool|\PDOStatement
     {
         // TODO: Implement getProductsPopulate() method.
-        $strSQL =  "SELECT books.book_id, books.title, books.subtitle, books.picture\n"
-            . "FROM `books`  \n"
-            . "ORDER BY `books`.`populate` DESC;";
+        $strSQL =  "SELECT books.book_id, books.title, books.subtitle, books.picture, book_genres.genres_ID 
+        FROM `books` INNER JOIN book_genres ON book_genres.book_ID = books.book_id 
+        ORDER BY `books`.`populate` DESC  LIMIT 4";
 
         return Application::$database->getMySQL()->getIsConnection()->query($strSQL);
     }
@@ -51,5 +51,15 @@ class Product implements IProduct
                     WHERE books.book_id = $isb;";
         return Application::$database->getMySQL()->getIsConnection()->query($strSQL);
     }
+
+    public function searchProducts($name)
+    {
+        // TODO: Implement searchProducts() method.
+        $strSQL = "SELECT books.book_id, books.picture ,books.title FROM books\n"
+
+            . "WHERE books.title LIKE \"%$name%\";";
+        return Application::$database->getMySQL()->getIsConnection()->query($strSQL);
+    }
+
 
 }

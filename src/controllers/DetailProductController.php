@@ -10,7 +10,7 @@ class DetailProductController extends Controller
 {
     public function  DetailProductController()
     {
-        $views = "Detail_product";
+        $views = "DetailPage";
         $this->render($views, null);
 ;    }
 }

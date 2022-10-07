@@ -45,6 +45,7 @@ echo '
 </section>';
 ?>
 
+
 <script>
     const productsViews = (() => {
         const handlerEventRoute = () => {

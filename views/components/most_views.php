@@ -4,9 +4,13 @@ $data = $dao->GetModuleProductsPopulate();
 
 $outputOfProductPopulated  = null;
 
+$rulesParameter = $_GET["keyword"] === 0 || isset($_GET['keyword']);
 if ($data['code'] != 0) {
     while ($value = $data['message']->fetch()) {
-        $request = "Detail_product?book_isb=" . $value['book_id'];
+        $book_isb = $value['book_id'];
+        $request = $rulesParameter
+            ?  "Detail_product?book_isb=$book_isb&keyword={$_GET["keyword"]}"
+            :  "Detail_product?book_isb=$book_isb";
 
         $outputOfProductPopulated .= '
         <div class="most_views_block flex">
@@ -26,7 +30,6 @@ if ($data['code'] != 0) {
     echo '<pre>';
     print_r($data);
     echo '</pre>';
-    exit();
 }
 
 echo '
