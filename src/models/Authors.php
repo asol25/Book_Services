@@ -4,7 +4,7 @@
 namespace app\src\models;
 
 
-class Bill
+class Authors
 {
 
 }

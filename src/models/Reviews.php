@@ -21,5 +21,4 @@ class Reviews implements IReviews
             . "WHERE review.book_id = $isb;";
 
         return Application::$database->getMySQL()->getIsConnection()->query($strSQL);
-    }
 }

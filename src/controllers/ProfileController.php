@@ -23,9 +23,10 @@ class ProfileController extends Controller
         ];
 
         echo "<pre>";
-        print_r($template['session']->{'accessToken'});
+        print_r($session);
         echo "</pre>";
         $views = "ProfilePage";
         $this->render($views, ["template" => $template]);
+
     }
 }

@@ -4,7 +4,7 @@
 namespace app\src\models\interfaces;
 
 
-interface IBill
+interface IAuthors
 {
 
 }
