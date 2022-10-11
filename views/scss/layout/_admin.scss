@@ -1,0 +1,37 @@
+.admin_container_manager {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1em;
+
+    img {
+        width: 50px;
+        height: 50;
+        object-fit: contain;
+    }
+}
+
+.admin_container {
+    display: flex;
+    align-items: flex-start;
+
+    .nav {
+        margin-right: 30%;
+    }
+
+    details {
+        color: white;
+    }
+
+    .nav_list li {
+        padding-left: 2em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .admin_container {
+        flex-direction: column !important;
+        justify-content: center;
+        align-items: center;
+    }
+}

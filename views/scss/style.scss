@@ -1,11 +1,11 @@
 // color
 $base-color: #242121;
-$color-white: #FFFFFF;
-$color-text: #D2D2D2;
+$color-white: #ffffff;
+$color-text: #d2d2d2;
 $color-text-input: #373737;
 $color-text-input-small: #292929;
 $color-select: #808080;
-$fill-icon: #E7E2E2;
+$fill-icon: #e7e2e2;
 
 // size text
 
@@ -17,7 +17,6 @@ $normal-size: 16px;
 $input-text-size-small: 12px;
 $text-small: 12px;
 
-
 $w700: 700;
 $w600: 600;
 $w500: 500;
@@ -28,9 +27,33 @@ $w300: 300;
     font-family: "Roboto";
     font-style: normal;
     margin: 0 auto;
+    background-color: $base-color;
 }
 body {
     background-color: $base-color;
+}
+
+dialog {
+    max-width: 300; 
+    max-height: 300px;
+    height: 300px;
+    width: 300px;
+    padding: 2em;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    img {
+        max-width: 50%;
+        max-height: 50%;
+        display: block;
+    }
+}
+.section {
+    margin-top: 3.5em;
+    margin-bottom: 3.5em;
 }
 
 .flex {
@@ -48,28 +71,75 @@ img {
     gap: 116px;
 }
 
-
-::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	// border-radius: 10px;
-	background-color: #F5F5F5;
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    // border-radius: 10px;
+    background-color: #f5f5f5;
 }
 
-::-webkit-scrollbar
-{
-	width: 12px;
-	background-color: #F5F5F5;
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #f5f5f5;
 }
 
-::-webkit-scrollbar-thumb
-{
-	// border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #555;
+::-webkit-scrollbar-thumb {
+    // border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #555;
 }
 
+table {
+    border-collapse: collapse;
+    background: white !important;
+}
+td,
+th {
+    border: 1px solid #dddddd !important;
+    text-align: center;
+    padding: 8px !important;
+}
 
+th {
+    background-color: green !important;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 @import "./header/header";
 @import "./layout/layout";
 @import "./footer/footer";

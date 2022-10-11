@@ -37,7 +37,8 @@ class Create_payment_url extends PaymentService implements IPaymentService
         ?string $vnp_Bill_NumberPhone,
         ?string $vnp_Bill_NameCard,
     ) {
-        parent::__construct($vnp_Amount,
+        parent::__construct(
+            $vnp_Amount,
             $vnp_BankCode,
             $vnp_Locale,
             $vnp_OrderInfo,

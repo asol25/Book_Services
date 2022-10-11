@@ -1,6 +1,5 @@
 <?php
 require_once 'views/components/most_views.php';
-
 ?>
 
 <div class="main_products_container">

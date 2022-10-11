@@ -1,6 +1,5 @@
 <?php
 
-
 namespace app\src\services\payment;
 
 error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
@@ -478,7 +477,7 @@ class PaymentService
      */
     public function setVnpIpAddr(): void
     {
-        $ipAddress =  $_SERVER['REMOTE_ADDR'];
+        $ipAddress = $_SERVER['REMOTE_ADDR'];
         $this->vnp_IpAddr = $ipAddress;
     }
 

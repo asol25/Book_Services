@@ -14,7 +14,7 @@ use app\src\controllers\PaymentController;
 use app\src\controllers\ProfileController;
 use app\src\controllers\RolesController;
 use app\src\controllers\SearchController;
-use app\src\services\auth\AuthRoles;
+use app\src\controllers\ShoppingController;
 
 $app = new Application(dirname(__DIR__));
 
@@ -26,12 +26,23 @@ $app->router->get('/callback', (array)[CallbackController::class, 'CallbackContr
 
 $app->router->get('/Category', (array)[CategoryController::class, 'CategoryController']);
 $app->router->get('/Detail_product', (array)[DetailProductController::class, 'DetailProductController']);
+$app->router->get('/AddShoppingCart', (array)[ShoppingController::class, 'AddShoppingCart']);
 $app->router->get('/ShoppingCart', (array)[ShoppingController::class, 'ShoppingController']);
 $app->router->get('/Role', (array)[RolesController::class, 'GetRoleController']);
 $app->router->get('/Search', (array)[SearchController::class, 'SearchController']);
 $app->router->get('/Admin', (array)[AdminController::class, 'AdminController']);
+$app->router->post('/UpdateProduct', (array)[AdminController::class, 'UpdateProductController']);
+$app->router->post('/UpdateAuthor', (array)[AdminController::class, 'UpdateAuthorController']);
+$app->router->post('/UpdatePublisher', (array)[AdminController::class, 'UpdatePublisherController']);
+$app->router->get('/DeleteProduct', (array)[AdminController::class, 'DeleteProduct']);
+$app->router->get('/DeleteAuthor', (array)[AdminController::class, 'DeleteAuthor']);
+$app->router->get('/DeletePublisher', (array)[AdminController::class, 'DeletePublisher']);
+$app->router->post('/AddProduct', (array)[AdminController::class, 'AddProductController']);
+$app->router->post('/AddAuthor', (array)[AdminController::class, 'AddAuthorController']);
+$app->router->post('/AddAuthor', (array)[AdminController::class, 'AddAuthorController']);
 
-$app->router->get('/payment', (array)[PaymentController::class, 'PaymentController']);
+$app->router->get('/Checkout', (array)[PaymentController::class, 'GetCheckOutPageController']);
+$app->router->post('/payment', (array)[PaymentController::class, 'PaymentController']);
 $app->router->get('/payment/callback', (array)[PaymentController::class, 'PaymentPageController']);
 
 $app->run();

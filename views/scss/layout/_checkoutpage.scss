@@ -1,0 +1,25 @@
+.checkOut_container {
+    text-align: center;
+    color: white;
+
+    h3 {
+        font-size: 32px;
+    }
+
+    input {
+        width: 150px;
+    }
+
+    .table-responsive {
+        text-align: left;
+        width: 50%;
+        margin: 0 auto;
+        .form-group {
+            display: flex;
+            gap: .5em;
+            flex-direction: column;
+            padding: .5em 1em;
+        }
+    }
+ 
+}

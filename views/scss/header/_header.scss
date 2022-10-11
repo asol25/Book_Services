@@ -7,6 +7,8 @@
     background-color: $color-text-input-small;
     align-items: center;
     justify-content: space-around;
+    margin-bottom: 105px;
+
 
     &_logo a {
         color: $color-white;
@@ -115,7 +117,8 @@
 }
 
 .nav {
-    margin-bottom: 150px;
+    margin-left: .5em;
+    margin-bottom: .5em;
     &_list {
         justify-content: center;
         align-items: center;

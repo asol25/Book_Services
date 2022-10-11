@@ -1,15 +1,15 @@
 <?php
 
-echo '<pre>';
-print_r($_GET);
-print_r($_SERVER);
-echo '</pre>';
+// echo '<pre>';
+// print_r($_SERVER);
+// echo '</pre>';
 
 use app\core\Application;
 
 $stateAccount = null;
 $auth = Application::$auth;
 $session = $auth->getCredentials();
+
 
 $authenticated = $session !== null;;
 if ($authenticated) {
@@ -18,7 +18,7 @@ if ($authenticated) {
     <div class="account_container">
         <div class="dropdown">
         <div class="profile-img">
-            <img src="'.$session->user['picture'] .'" />
+            <img src="' . $session->user['picture'] . '" />
         </div>
         <div class="dropdown-content">
           <a href="profile">Profile</a>
@@ -86,10 +86,9 @@ echo '
             </div>
 
             <div class="header_setting flex">
-                '.$stateAccount.'
+                ' . $stateAccount . '
             </div>
         </header>
-
         <main class="main-container gird">
             {{content}}
         </main>
@@ -100,3 +99,7 @@ echo '
 
 </html>
 ';
+
+?>
+
+</script>

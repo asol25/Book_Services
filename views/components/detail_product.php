@@ -175,6 +175,7 @@ if ($reviewsData['code'] !== 0) {
 
 if (isset($data['code'])) {
     # code...
+    $addCart = "/AddShoppingCart?book_id={$data["message"][0]["book_id"]}&picture={$data["message"][0]["picture"]}&title={$data["message"][0]["title"]}&price={$data["message"][0]["price"]}&discount={$data["message"][0]["discount"]}";
     $output_product = '
     <section class="section detail_product most_views">
     <div class="flex most_views_container">
@@ -203,14 +204,13 @@ if (isset($data['code'])) {
         <div class="detail_product_content_description">
             <p class="description">Description</p>
             <p class="detail_description" id="content">
-                Available at a lower price from other sellers that may not offer free Prime shipping.
-                What will you learn from this book?
-                This brain friendly guide teaches you everything from JavaScript language fundamentals to advanced topics, including objects, functions, and the browser’s document object model. You won’t just be reading—you’ll be playing games, solving puzzles, pondering mysteries, and interacting with JavaScript in ways you never imagined. And you’ll write real code, lots of it, so you can start building your own web applications. Prepare to open your mind as you learn (and nail) key topics including:
+            ' . $data['message'][0]['description'] . '
             </p>
         </div>
 
         <button id="myBtn">READ REVIEWS</button>
         <button id="button_moreContent">READ MORE</button>
+        <a href= "' . $addCart . '" id="button_moreContent">ADD CART</a>
 
         <!-- The Modal -->
         <div id="myModal" class="modal">
@@ -295,7 +295,6 @@ echo "$output_product";
                 }
             }
         }
-
         render();
         dialog_reviews();
         readMoreContent();
