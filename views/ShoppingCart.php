@@ -26,7 +26,7 @@ foreach ($_SESSION['ShoppingCart'] as $key => $value) {
     <div class="shopping_products flex">
         <?php
         echo $output_products;
-        if ($_GET['state'] == "true") {
+        if (isset($_GET['state']) && $_GET['state'] == "true") {
             # code...
             echo '
         <dialog id="dialog" open>
