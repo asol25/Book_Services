@@ -47,11 +47,11 @@ class Router
         $errorCode = 404;
         $path = $this->request->getPath();
         $method = $this->request->getMethod();
-       $callback = $this->routes[$method][$path] ?? false;
+        $callback = $this->routes[$method][$path] ?? false;
 
         if (!$this->routes[$method][$path] ) {
             $pathError = "views/404.php";
-            include_once "{$pathError}";;
+            include_once "{$pathError}";
             Application::$response->setStatusCode($errorCode);
             exit();
         }
@@ -97,6 +97,7 @@ class Router
     {
         ob_start();
         include_once "views/$views.php";
+        var_dump(include_once "views/$views.php");
         return ob_get_clean();
     }
 }
