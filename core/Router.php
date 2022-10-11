@@ -53,7 +53,7 @@ class Router
             $errorCode = 404;
             $pathError = "views/404.php";
             include_once "{$pathError}";;
-            Application::$app->response->setStatusCode($errorCode);
+            Application::$response->setStatusCode($errorCode);
         }
 
         if (is_array($callback)) {
