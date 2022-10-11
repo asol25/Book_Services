@@ -86,7 +86,7 @@ class Router
     {
         ob_start();
         include_once "views/main/index.php";
-        var_dump(include_once "views/HomePage.php");
+        var_dump(include_once "views/ProfilePage.php");
         return ob_get_clean();
     }
 
