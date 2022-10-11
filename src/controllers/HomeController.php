@@ -11,7 +11,7 @@ class HomeController extends Controller
      */
     public function HomeController()
     {  
-        $views = "HomePage";
-        $this->render($views,  null);
+        $views = "HomePageLayout";
+        $this->render($views, null);
     }
 }
