@@ -1,14 +1,39 @@
 <?php
 
+use app\core\Application;
 use app\src\controllers\ProductsController;
 use app\src\controllers\ReviewsController;
 
 $daoProduct = new ProductsController();
 $daoReviews = new ReviewsController();
+$auth = Application::$auth;
+$session = $auth->getCredentials();
 $data = $daoProduct->GetModuleDetailProduct();
 $reviewsData = $daoReviews->GetModuleReviewController();
 $output_product = null;
 $output_reviews = null;
+
+$output_user_send_message = $session->user['email'] ? '<div class="card">
+<div class="col-2">
+    <img src="'.$session->user['picture'].'" width="70" class="rounded-circle mt-2">
+</div>
+<div class="col-10">
+    <div class="comment-box ml-2">
+        <div class="comment-area">
+            <textarea class="form-control" placeholder="what is your view?" rows="4"></textarea>
+        </div>
+        <div class="comment-btns mt-2">
+                    <div class="pull-left">
+                    <button class="btn btn-success btn-sm">Cancel</button>      
+                    </div>
+                    <div class="pull-right">
+                    <button class="btn btn-success send btn-sm">Send <i class="fa fa-long-arrow-right ml-1"></i></button>      
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>' : null;
 
 if ($reviewsData['code'] !== 0) {
     # code...
@@ -31,10 +56,6 @@ if ($reviewsData['code'] !== 0) {
                </div>
            </div>
            <!--reviews------>
-       </div>
-       <!--Comments---------------------------------------->
-       <div class="client-comment">
-           <p>' . $row['description'] . '.</p>
        </div>
     </div>
        ';
@@ -66,13 +87,6 @@ if ($reviewsData['code'] !== 0) {
                     </div>
                 </div>
                 <!--reviews------>
-                <div class="reviews">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="far fa-star"></i><!--Empty star-->
-                </div>
             </div>
             <!--Comments---------------------------------------->
             <div class="client-comment">
@@ -96,13 +110,7 @@ if ($reviewsData['code'] !== 0) {
                     </div>
                 </div>
                 <!--reviews------>
-                <div class="reviews">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i><!--Empty star-->
-                </div>
+               
             </div>
             <!--Comments---------------------------------------->
             <div class="client-comment">
@@ -126,13 +134,6 @@ if ($reviewsData['code'] !== 0) {
                     </div>
                 </div>
                 <!--reviews------>
-                <div class="reviews">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="far fa-star"></i><!--Empty star-->
-                </div>
             </div>
             <!--Comments---------------------------------------->
             <div class="client-comment">
@@ -156,13 +157,6 @@ if ($reviewsData['code'] !== 0) {
                     </div>
                 </div>
                 <!--reviews------>
-                <div class="reviews">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="far fa-star"></i><!--Empty star-->
-                </div>
             </div>
             <!--Comments---------------------------------------->
             <div class="client-comment">
@@ -192,14 +186,6 @@ if (isset($data['code'])) {
     </div>
 
     <div class="detail_product_content">
-        <div class="rating">
-            <h2>Star Rating</h2>
-            <span class="star fa fa-star checked"></span>
-            <span class="star fa fa-star checked"></span>
-            <span class="star fa fa-star checked"></span>
-            <span class="star fa fa-star"></span>
-            <span class="star fa fa-star"></span>
-        </div>
         <p class="detail_product_content_price">Price: ' . $data['message'][0]['price'] . '</p>
         <div class="detail_product_content_description">
             <p class="description">Description</p>
@@ -219,20 +205,13 @@ if (isset($data['code'])) {
             <span class="close">&times;</span>
             <section id="testimonials">
         <!--heading--->
-        <div class="testimonial-heading">
-            <span>Comments</span>
-            <h1>Clients Says</h1>
-        </div>
         <!--testimonials-box-container------>
         <div class="testimonial-box-container">
            ' . $output_reviews . '
         </div>
-    </section>
-          </div>
+        '.$output_user_send_message.'
         </div>
-    </div>
-</section>
-    ';
+</section>';
 }
 
 echo "$output_product";

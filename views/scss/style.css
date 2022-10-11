@@ -689,6 +689,64 @@ th {
   /* Black w/ opacity */
 }
 
+.detail_product .card {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  min-width: 0;
+  padding: 20px;
+  max-width: 450px;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: 6px;
+  -moz-box-shadow: 0px 0px 5px 0px #d4b6d4;
+}
+
+.detail_product .card img {
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+}
+
+.detail_product .comment-box {
+  padding: 5px;
+}
+
+.detail_product .comment-area textarea {
+  resize: none;
+  border: 1px solid #ad9f9f;
+}
+
+.detail_product .form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #ffffff;
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 1px red !important;
+          box-shadow: 0 0 0 1px red !important;
+}
+
+.detail_product .send {
+  color: #fff;
+  background-color: #ff0000;
+  border-color: #ff0000;
+}
+
+.detail_product .send:hover {
+  color: #fff;
+  background-color: #f50202;
+  border-color: #f50202;
+}
+
 .detail_product .modal-content {
   background-color: #fefefe;
   margin: auto;

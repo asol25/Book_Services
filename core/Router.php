@@ -50,7 +50,9 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
 
         if (!$callback) {
+            $errorCode = 404;
             $pathError = "views/404.php";
+            include_once "{$pathError}";;
             Application::$app->response->setStatusCode($errorCode);
             exit;
         }

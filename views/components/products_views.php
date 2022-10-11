@@ -10,10 +10,13 @@ $output_option = null;
 if ($output_products['code'] !== 0) {
     # code...
     foreach ($products['message'] as $product) {
-        $output_products .= '
-        <div class="products_views_container_picture">
-        <img src="' . $product['picture'] . '" alt="" srcset="">
-    </div>';
+        $requestDetailProduct = $_GET['keyword'] 
+            ? "Detail_product?keyword={$_GET['keyword']}&book_isb={$product['book_id']}"
+            : "Detail_product?book_isb={$product['book_id']}";
+        $output_products .= "
+        <div class='products_views_container_picture'>
+        <a href=$requestDetailProduct><img src='{$product['picture']}'></a>
+    </div>";
     }
 }
 // echo '<pre>';

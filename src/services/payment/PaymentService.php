@@ -468,7 +468,8 @@ class PaymentService
      */
     public function setVnpReturnUrl(): void
     {
-        $url = "http://localhost:8000/payment/callback";
+        
+        $url = "{$_SERVER['HTTP_HOST']}/payment/callback";
         $this->vnp_ReturnUrl = $url;
     }
 
