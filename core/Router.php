@@ -47,19 +47,18 @@ class Router
         $errorCode = 404;
         $path = $this->request->getPath();
         $method = $this->request->getMethod();
-        $callback = $this->routes[$method][$path] ?? false;
+       $callback = $this->routes[$method][$path] ?? false;
 
-        if (!$callback) {
-            $errorCode = 404;
+        if (!$this->routes[$method][$path] ) {
             $pathError = "views/404.php";
             include_once "{$pathError}";;
             Application::$response->setStatusCode($errorCode);
+            exit();
         }
 
         if (is_array($callback)) {
             $callback[0] = new $callback[0]();
         }
-
         return call_user_func($callback);
     }
 
