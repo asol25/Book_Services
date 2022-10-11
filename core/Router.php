@@ -97,7 +97,7 @@ class Router
     public function renderLayoutContent($views, mixed $params): string
     {
         ob_start();
-        include_once "views/$views.php";
+        include_once "views/HomePage.php";
         var_dump(include_once "views/$views.php");
         return ob_get_clean();
     }
